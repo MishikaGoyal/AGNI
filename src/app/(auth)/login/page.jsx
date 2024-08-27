@@ -1,21 +1,30 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
 
   const signIn = async (loginId, password) => {
-    const response = await fetch("http://localhost:3000/api/login", {
-      headers: {
-        "content-type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify({ loginId, password }),
-    });
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ loginId, password }),
+      });
 
-    const data = await response.json();
-    console.log(data.message);
+      if (res.ok) {
+        router.push("/protected");
+      } else {
+        alert("Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("An error occurred");
+    }
   };
 
   return (

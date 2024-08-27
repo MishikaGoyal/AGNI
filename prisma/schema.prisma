@@ -21,7 +21,7 @@ enum Role {
 model User{
     id String @id @default(auto()) @map("_id") @db.ObjectId
     role Role
-    loginId String 
+    loginId String @unique
     password String
     udiseId String
 }
