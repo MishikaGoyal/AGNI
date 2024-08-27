@@ -5,27 +5,22 @@ import { useRouter } from "next/navigation";
 export default function Page() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const signIn = async (loginId, password) => {
-    try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ loginId, password }),
-      });
-
-      if (res.ok) {
-        router.push("/protected");
-      } else {
-        alert("Login failed");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      alert("An error occurred");
+  async function logIn(loginId, password) {
+    if (loginId === "" || password === "") {
+      return;
     }
-  };
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ loginId, password }),
+    });
+    const resData = await res.json();
+    console.log(resData.message);
+  }
 
   return (
     <div className="grid place-items-center w-full h-[100vh] ">
@@ -36,7 +31,6 @@ export default function Page() {
             type="text"
             name=""
             placeholder="Login ID"
-            id=""
             value={loginId}
             onChange={(e) => setLoginId(e.target.value)}
           />
@@ -47,13 +41,15 @@ export default function Page() {
             type="Password"
             name=""
             placeholder="password"
-            id=""
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="flex items-center justify-center py-3 border">
-          <button className="" onClick={() => signIn(loginId, password)}>
+          <button
+            className="w-[100%] h-[100%]"
+            onClick={() => logIn(loginId, password)}
+          >
             sign in
           </button>
         </div>
