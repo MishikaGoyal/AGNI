@@ -10,17 +10,23 @@ export function middleware(req) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
+  /* 
   try {
-    const verified = jwt.verify(token, JWT_SECRET);
-    if (verified) {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
+    jwt.verify(token, JWT_SECRET);
+    return NextResponse.next();
   } catch (err) {
-    console.error(err);
-  }
+    console.error("Token verification failed:", err.message);
+
+    return NextResponse.redirect(new URL("/login", req.url));
+  } */
+  return NextResponse.next();
 }
+
 export const config = {
-  matcher: ["/protected/:path*", "/api/:path*"],
+  matcher: [
+    "/api/:path((?!login$).*)",
+    "/protected:path*",
+    "/principal:path*",
+    "/admin:path* ",
+  ],
 };

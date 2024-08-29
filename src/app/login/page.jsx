@@ -11,15 +11,22 @@ export default function Page() {
     if (loginId === "" || password === "") {
       return;
     }
-    const res = await fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ loginId, password }),
-    });
-    const resData = await res.json();
-    console.log(resData.message);
+    try {
+      const res = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ loginId, password }),
+      });
+      const resData = await res.json();
+      if (res.status === 200) {
+        router.push(`/${resData.role.toLowerCase()}`);
+      }
+      console.log(resData.message);
+    } catch (error) {
+      console.error("an unexpected error occured", error);
+    }
   }
 
   return (

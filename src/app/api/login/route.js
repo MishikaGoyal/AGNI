@@ -33,7 +33,10 @@ export async function POST(req) {
     }
   );
 
-  const response = NextResponse.json({ message: "succesfully logged in" });
+  const response = NextResponse.json(
+    { message: "succesfully logged in", role: user.role },
+    { status: 200 }
+  );
   response.cookies.set({
     name: "token",
     value: token,
