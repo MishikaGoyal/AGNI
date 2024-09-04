@@ -2,7 +2,7 @@ import pdfplumber
 import re
 
 # Path to your PDF file
-pdf_file = "C:/Users/PRATHAM/Downloads/Resources/Resources/Beawar 1 school example.pdf"
+pdf_file = "Beawar 1 school example.pdf"
 # Initialize a list to store extracted data
 data = []
 
