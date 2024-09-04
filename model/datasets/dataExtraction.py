@@ -56,25 +56,18 @@ with pdfplumber.open(pdf_file) as pdf:
         
         if text:
             for key, pattern in patterns.items():
-                if key == 'Total Number of students':
-                    # Find the G.Tot row and extract the last number
-                    match = re.search(pattern, text, re.MULTILINE)
-                    if match:
-                        # The last number in the G.Tot row
-                        data[key] = match.group(1)
-                else:
-                    match = re.search(pattern, text, re.MULTILINE)
-                    if match:
-                        # Clean up unwanted data using the custom cleanup function
-                        cleaned_data = clean_text(match.group(1), key)
+                match = re.search(pattern, text, re.MULTILINE)
+                if match:
+                    # Clean up unwanted data using the custom cleanup function
+                    cleaned_data = clean_text(match.group(1), key)
 
-                        # Handle special cases for multi-group matches
-                        if key in ['Total Toilets (Excluding CWSN)', 'Lowest & Highest Class']:
-                            cleaned_data = f"{match.group(1)} - {match.group(2)}"
+                    # Handle special cases for multi-group matches
+                    if key in ['Total Toilets (Excluding CWSN)', 'Lowest & Highest Class']:
+                        cleaned_data = f"{match.group(1)} - {match.group(2)}"
 
-                        # Avoid duplicating School Name and UDISE CODE
-                        if key not in data or key in ['Total Number of students', 'Total Number of Teachers']:
-                            data[key] = cleaned_data
+                    # Avoid duplicating School Name and UDISE CODE
+                    if key not in data or key in ['Total Number of students', 'Total Number of Teachers']:
+                        data[key] = cleaned_data
 
 # Print the extracted data as a single dictionary
 pprint.pprint(data)
