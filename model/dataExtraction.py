@@ -1,10 +1,12 @@
 import pdfplumber
 import re
+import pprint
 
 # Path to your PDF file
-pdf_file = "Beawar 1 school example.pdf"
-# Initialize a list to store extracted data
-data = []
+pdf_file = r"model\Beawar 1 school example.pdf"
+
+# Initialize a dictionary to store extracted data
+data = {}
 
 # Define refined regex patterns for the required fields
 patterns = {
@@ -17,7 +19,7 @@ patterns = {
     'Lowest & Highest Class': r'Lowest & Highest Class\s*:?[\s\n]*(\d{1,2})\s*-\s*(\d{1,2})',
     'Year of Establishment': r'Year of Establishment\s*:?[\s\n]*(\d{4})',
     'Boundary Wall': r'Boundary wall\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
-    'Total(Excluding CWSN)': r'Total\(Excluding CWSN\)\s*:?[\s\n]*(\d+)\s+(\d+)',
+    'Total Toilets (Excluding CWSN)': r'Total\(Excluding CWSN\)\s*:?[\s\n]*(\d+)\s+(\d+)',
     'Total Class Rooms': r'Total Class Rooms\s*:?[\s\n]*(\d+)',
     'Library Available': r'Library Availability\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
     'Separate Room for HM': r'Separate Room for HM\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
@@ -25,28 +27,53 @@ patterns = {
     'Playground Available': r'Playground Available\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
     'Electricity Availability': r'Electricity Availability\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
     'ICT Lab': r'ICT Lab\s*:?[\s\n]*(\d\s*-\s*[\w\s]+)',
-    'G.Tot': r'G.Tot\s*:?[\s\n]*(\d+)',
-    'Total': r'Total\s*:?[\s\n]*(\d+)\s+(\d+)'  # This is for the total right of the Classes Taught
+    'Total Number of teachers': r'Total\s*:?[\s\n]*(\d+)\s+(\d+)',
+    'G.Tot': r'G\.Tot.*\s(\d+)(?:\s|$)'
 }
+
+# Custom cleanup function to remove extra text
+def clean_text(text, key):
+    text = text.strip()
+    # Remove specific unwanted patterns
+    text = re.sub(r'\nTotal', '', text)
+    text = re.sub(r'\nHandwash Facility for Meal 1', '', text)
+    text = re.sub(r'\nUrinal 43 14 Furniture Availability 2400\nHandwash Near Toilet 1', '', text)
+    text = re.sub(r' 1$', '', text)
+    text = re.sub(r'Anganwadi Girls 0\nYear of Recognition', '', text)
+    text = re.sub(r'Solar Panel', '', text)
+    text = re.sub(r'Medium of Instruction|Visit of school for', '', text)
+    text = re.sub(r'Medium 1 19', '', text)
+    text = re.sub(r'Medical checkups', '', text)
+    
+    return text.strip()
 
 # Open the PDF file
 with pdfplumber.open(pdf_file) as pdf:
     for page in pdf.pages:
         # Extract text from each page
         text = page.extract_text()
+        
         if text:
-            # Store extracted data for this page
-            page_data = {}
             for key, pattern in patterns.items():
-                match = re.search(pattern, text, re.MULTILINE)
-                if match:
-                    if key in ['Total(Excluding CWSN)', 'Lowest & Highest Class', 'Total']:
-                        page_data[key] = f"{match.group(1)} - {match.group(2)}"
-                    else:
-                        page_data[key] = match.group(1).strip()
-            if page_data:
-                data.append(page_data)
+                if key == 'G.Tot':
+                    # Find the G.Tot row and extract the last number
+                    match = re.search(pattern, text, re.MULTILINE)
+                    if match:
+                        # The last number in the G.Tot row
+                        data[key] = match.group(1)
+                else:
+                    match = re.search(pattern, text, re.MULTILINE)
+                    if match:
+                        # Clean up unwanted data using the custom cleanup function
+                        cleaned_data = clean_text(match.group(1), key)
 
-# Print the extracted data
-for entry in data:
-    print(entry)
+                        # Handle special cases for multi-group matches
+                        if key in ['Total Toilets (Excluding CWSN)', 'Lowest & Highest Class']:
+                            cleaned_data = f"{match.group(1)} - {match.group(2)}"
+
+                        # Avoid duplicating School Name and UDISE CODE
+                        if key not in data or key in ['G.Tot', 'Total Number of Students', 'Total Number of Teachers']:
+                            data[key] = cleaned_data
+
+# Print the extracted data as a single dictionary
+pprint.pprint(data)
