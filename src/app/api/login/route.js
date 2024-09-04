@@ -1,53 +1,66 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { SignJWT } from "jose";
+import crypto from "crypto";
 
 const prisma = new PrismaClient();
+const secretKey = crypto.createSecretKey(
+  Buffer.from(process.env.JWT_SECRET, "utf-8")
+);
 
 export async function POST(req) {
-  const { loginId, password } = await req.json();
+  try {
+    const { loginId, password } = await req.json();
 
-  if (!loginId || !password) {
-    return NextResponse.json({ message: "invalid data" }, { status: 401 });
-  }
-  const user = await prisma.user.findUnique({ where: { loginId } });
-
-  if (!user) {
-    return NextResponse.json({ message: "invalid user" }, { status: 401 });
-  }
-  const verified = await bcrypt.compare(password, user.password);
-
-  if (!verified) {
-    return NextResponse.json(
-      { message: "incorrect password" },
-      { status: 400 }
-    );
-  }
-
-  const token = jwt.sign(
-    { userId: user.id, role: user.role },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "1h",
+    if (!loginId || !password) {
+      return NextResponse.json({ message: "Invalid data" }, { status: 401 });
     }
-  );
 
-  const response = NextResponse.json(
-    { message: "succesfully logged in", role: user.role },
-    { status: 200 }
-  );
-  response.cookies.set({
-    name: "token",
-    value: token,
-    httpOnly: true,
-    path: "/",
-    maxAge: 60 * 60,
-  });
+    const user = await prisma.user.findUnique({ where: { loginId } });
 
-  return response;
+    if (!user) {
+      return NextResponse.json({ message: "Invalid user" }, { status: 401 });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return NextResponse.json(
+        { message: "Incorrect password" },
+        { status: 400 }
+      );
+    }
+
+    const token = await new SignJWT({ userId: user.id, role: user.role })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("1h")
+      .sign(secretKey);
+
+    const response = NextResponse.json(
+      { message: "Successfully logged in", role: user.role },
+      { status: 200 }
+    );
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60, // 1 hour
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error during login:", error);
+    return NextResponse.json(
+      { message: "Internal server error" },
+      { status: 500 }
+    );
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 export function GET() {
-  return NextResponse.json("hello world");
+  return NextResponse.json("Hello, world!");
 }
