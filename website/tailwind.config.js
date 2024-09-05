@@ -1,4 +1,4 @@
-const { default: daisyui } = require('daisyui');
+import daisyui from 'daisyui'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,4 +19,7 @@ module.exports = {
   plugins: [
     require('daisyui')
   ],
+  daisyui:{
+    darkTheme:false,
+  }
 };
