@@ -11,11 +11,7 @@
   "dependencies": {
     "@prisma/client": "^5.18.0",
     "bcrypt": "^5.1.1",
-<<<<<<< HEAD
     "dotenv": "^16.4.5",
-=======
-    "daisyui": "^4.12.10",
->>>>>>> db21fc91f49bfe34bc07c14e96e4799f66806031
     "jose": "^5.8.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",
