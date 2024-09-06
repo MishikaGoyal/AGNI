@@ -1,5 +1,7 @@
 import PyPDF2
 import re
+import json
+import os
 def extract_school_data(pdf_file):
     with open(pdf_file, 'rb') as file:
         reader = PyPDF2.PdfReader(file)
@@ -43,9 +45,25 @@ def extract_school_data(pdf_file):
 
     return extracted_data
 
-# Usage
-pdf_file = "Schools/67.pdf" # write pdf name (in loop it will be 'i')
-school_data = extract_school_data(pdf_file)
-for key, value in school_data.items(): #this is just for checking, when the code works properly
-    print(f"{key}: {value}") #remove this loop and just use school_data
-#also remember the data should be in json format and store the complete data in other file or dorxctly in mongoDB
+# Define the folder path containing the PDF files
+folder_path = "./School Downloads"
+
+# Create a list to store the extracted data from each PDF
+all_school_data = []
+
+# Iterate over all PDF files in the folder
+for filename in os.listdir(folder_path):
+    if filename.endswith(".pdf"):
+        pdf_file_path = os.path.join(folder_path, filename)
+        # Extract data from the current PDF file
+        school_data = extract_school_data(pdf_file_path)
+        all_school_data.append(school_data)
+
+# Define the output JSON file path
+output_json_path = "./schools_data.json"
+
+# Save the extracted data to a JSON file
+with open(output_json_path, "w") as json_file:
+    json.dump(all_school_data, json_file, indent=4)
+
+print(f"Data extracted and saved to {output_json_path}")
