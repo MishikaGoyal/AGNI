@@ -64,7 +64,7 @@ export default function Page() {
   </div>
 </div>
     </div>
-    <div className="grid place-items-center h-[100vh] ml-[950px] ">
+    <div className="grid place-items-center h-[100vh] ml-[900px] ">
       <div className=" w-[20rem]  flex flex-col h-[15rem]  justify-between ">
         <div className="w-full text-black border-2 rounded-xl">
           <input
