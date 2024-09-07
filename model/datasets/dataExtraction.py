@@ -28,6 +28,7 @@ def extract_school_data(pdf_file):
         "Electricity Availability": r'Electricity Availability\s*(\d+)',
         "Total Teachers": r'Total\s*(\d+)\s*',
         "CWSN": r'Cwsn*\s(\d+)(?:\s|$)',
+        "Total Washrooms": r'Total\(Excluding CWSN\)\s*:?[\s\n]*(\d+)\s+(\d+)',
         "Total Students": r'G\.Tot.*\s(\d+)(?:\s|$)'
     }
 
@@ -37,7 +38,7 @@ def extract_school_data(pdf_file):
     for key, pattern in patterns.items():
         match = re.search(pattern, text)
         if match:
-            if key == "Lowest & Highest Class":
+            if key in ['Total Toilets (Excluding CWSN)', 'Lowest & Highest Class']:
                 # Formatting the output to "1-7"
                 extracted_data[key] = f"{match.group(1)}-{match.group(2)}"
             else:
@@ -70,8 +71,7 @@ print(f"Data extracted and saved to {output_json_path}")
 
 '''
 Errors to be resolved:
-Isme numebr of washrooms washrooms nhi dikha raha abhi
-And agr CWSN nhi hai school me to default value 0 honi chahiye data me, abhi agar CWSN nhi hai file me toh data me uski field he nhi visible hai
+School Type should only be number as in 3 not 3-co-educational
 Grade configuration bhi glt store hai it should be in the form of 1-12 smth but it's showing only one number
-Boundary wall for all schools is 1 check if its actually correct
+I added number of Washrroms waala part but check for its format in json file.
 '''
