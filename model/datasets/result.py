@@ -46,10 +46,14 @@ def check_conditions(record):
 
 for record in collection.find():
     result = check_conditions(record)
-    # Update or add the 'Result' field in the record
     collection.update_one(
-        {"_id": record["_id"]},  # Use the unique identifier to find the record
+        {"_id": record["_id"]},  
         {"$set": {"Result": result}}
     )
 
 print("Records updated successfully.")
+
+'''
+Errors to be solved:
+The conditions for Grade configuration and Washrooms are not working
+'''
