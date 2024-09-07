@@ -67,3 +67,11 @@ with open(output_json_path, "w") as json_file:
     json.dump(all_school_data, json_file, indent=4)
 
 print(f"Data extracted and saved to {output_json_path}")
+
+'''
+Errors to be resolved:
+Isme numebr of washrooms washrooms nhi dikha raha abhi
+And agr CWSN nhi hai school me to default value 0 honi chahiye data me, abhi agar CWSN nhi hai file me toh data me uski field he nhi visible hai
+Grade configuration bhi glt store hai it should be in the form of 1-12 smth but it's showing only one number
+Boundary wall for all schools is 1 check if its actually correct
+'''
