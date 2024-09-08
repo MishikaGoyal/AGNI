@@ -7,11 +7,12 @@ collection = db['School']
 def check_conditions(record):
     total_teachers = int(record.get("Total Teachers", 0))
     total_students = int(record.get("Total Students", 0))
-    cwsn = int(record.get("CWSN", 0))
     separate_room_for_hm = int(record.get("Separate Room for HM", 0))
-    grade_configuration = tuple(record.get("Grade Configuration", "0-0"))
+    grade_configuration_str = record.get("Grade Configuration", "(0,0)")
+    grade_configuration = tuple(map(int, grade_configuration_str.strip("()").split(',')))
     school_type = int(record.get("School Type", 0))
-    total_washrooms = tuple(record.get("Total Washrooms", "0-0"))
+    total_washrooms_str = record.get("Total Washrooms", "(0,0)")
+    total_washrooms = tuple(map(int, total_washrooms_str.strip("()").split(',')))
     boundary_wall = int(record.get("Boundary Wall", 0))
     library_available = int(record.get("Library Available", 0))
     drinking_water_available = int(record.get("Drinking Water Available", 0))
@@ -21,26 +22,24 @@ def check_conditions(record):
 
     if (total_teachers * 40 < total_students):
         return "1ODD"
-    if (cwsn < 1):
-        return "2ODD"
     if (separate_room_for_hm != 1 ):
+        return "2ODD"
+    if (grade_configuration not in [(1, 5), (1, 10), (1, 12), (6, 10), (11, 12), (6,12)] ):
         return "3ODD"
-    if (grade_configuration not in ['(1, 5)', '(1, 10)', '(1, 12)', '(6, 10)', '(11, 12)'] ):
+    if (school_type == 3 and (total_washrooms[0] < 1 or total_washrooms[1] < 1)) :
         return "4ODD"
-    if (school_type == 3 and total_washrooms < '(1,1)') :
-        return "5ODD"
     if (boundary_wall != 1 ):
-        return "6ODD"
+        return "5ODD"
     if (library_available != 1) :
-        return "7ODD"
+        return "6ODD"
     if (drinking_water_available != 1): 
-        return "8ODD"
+        return "7ODD"
     if (playground_available != 1 ):
-        return "9ODD"
+        return "8ODD"
     if (electricity_availability != 1 ):
-        return "10ODD"
+        return "9ODD"
     if (total_classrooms < total_teachers):
-        return "11ODD"
+        return "10ODD"
     else:
         return "Standard"
 
