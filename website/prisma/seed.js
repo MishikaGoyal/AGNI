@@ -5,18 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const users = [
-    {
-      loginId: "principal_user",
-      password: "securePassword123",
-      role: Role.Principal,
-      udiseId: "UDISE123456",
-    },
-    {
-      loginId: "admin_user",
-      password: "anotherSecurePassword456",
-      role: Role.Admin,
-      udiseId: "UDISE789012",
-    },
+    { loginId: "agnii", password: "agnii", role: Role.Admin, udiseId: "" },
   ];
 
   for (const user of users) {
