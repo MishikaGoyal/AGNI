@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the pre-trained model
-model = joblib.load('C:/Users/Hp/Desktop/Working/SIH 2024/Test/model/school_result_model.pkl')
+model = joblib.load('model/school_result_model.pkl')
 
 # Create upload folder for storing files
 app.config['UPLOAD_FOLDER'] = 'uploads/'
