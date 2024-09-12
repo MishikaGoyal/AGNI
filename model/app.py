@@ -3,16 +3,10 @@ from werkzeug.utils import secure_filename
 from flask_cors import CORS
 import joblib
 import os
-from pymongo import MongoClient
 from your_ml_script import extract_data_from_pdf, check_conditions
 
 app = Flask(__name__)
 CORS(app)
-
-# MongoDB connection
-client = MongoClient('mongodb://localhost:27017/')
-db = client['Data']  # Database
-collection = db['predicted_results']  # Collection where results will be stored
 
 # Load the pre-trained model
 model = joblib.load('C:/Users/Hp/Desktop/Working/SIH 2024/Test/model/school_result_model.pkl')
@@ -61,9 +55,6 @@ def predict():
         full_data['Result'] = check
     
     print (full_data)
-
-    # Store the result in MongoDB
-    collection.insert_one(full_data)
 
     return full_data
 
