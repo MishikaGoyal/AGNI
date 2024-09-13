@@ -10,7 +10,7 @@ function Navbar() {
   };
 
   return (
-    <navbar >
+    <navbar  className='w-[100vh]'>
     <div className='bg-gray-900 text-white h-[60px]'>
       <ul className=''>
         <li className='-ml-[100px] absolute'><SearchBar onSearch={handleSearch} />
