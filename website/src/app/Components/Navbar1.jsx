@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 function Navbar1() {
   return (
-    <navbar >
+    <navbar className='w-[100vh]' >
     <div className='bg-gray-900 text-white h-[60px]'>
       <ul className='justify-between'>
        <li> <h1 className="tracking-in-expand-fwd ml-[40px]  text-xl">WELCOME BACK!!</h1></li>
