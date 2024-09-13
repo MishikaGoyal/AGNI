@@ -56,16 +56,16 @@ export default function Page() {
   );
 
   return (
-    <div className="w-full min-h-screen overflow-hidden">
+    <div className='min-w-max'>
       {/* Video Background - Lazy Load and Add Fallback */}
-      <div className="relative w-full h-[60vh]">
+      <div>
         <video
           src="/video3.mp4"
-          className="w-full h-full object-cover opacity-70"
+          className="slide-in-elliptic-left-fwd w-[700px] absolute mt-[150px] ml-[360px] rounded-xl opacity-70"
           loop
           autoPlay
           muted
-          loading="lazy"
+          loading="lazy" // Lazy loading video
         ></video>
       </div>
 
@@ -73,12 +73,12 @@ export default function Page() {
       <Navbar />
 
       {/* Quote Section */}
-      <p className="tracking-in-expand-fwd mt-8 mx-4 text-xl text-center">
+      <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
         The beautiful thing about learning is that no one can take it away from you.
       </p>
 
       {/* Cards Section */}
-      <div className="flex flex-wrap justify-center mt-16 gap-8 px-4">
+      <div className="flex flex-wrap justify-between mt-[500px] px-10 gap-8 relative">
         {/* Analyse Structure Card */}
         <Card
           title="Analyse Structure"
@@ -108,9 +108,9 @@ export default function Page() {
       </div>
 
       {/* Stats Section */}
-      <div className="stats shadow mt-12 w-full flex justify-around px-4 py-8">
+      <div className="stats shadow mt-[100px] w-full">
         {stats.map((stat, index) => (
-          <div key={index} className="stat tracking-in-expand-fwd flex-1 text-center mx-4">
+          <div key={index} className="stat tracking-in-expand-fwd">
             <div className="stat-figure text-xl">{stat.icon}</div>
             <div className="stat-title">{stat.title}</div>
             <div className="stat-value">{stat.value}</div>
@@ -122,7 +122,7 @@ export default function Page() {
 }
 
 const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileChange, handleSubmit }) => (
-  <div className="card bg-base-100 image-full w-full max-w-xs shadow-xl animate-fade-in-up">
+  <div className="card bg-base-100 image-full w-[380px] shadow-xl animate-fade-in-up">
     <figure>
       <Image src={imageSrc} alt={title} width={380} height={250} className="rounded-xl" loading="lazy" />
     </figure>
@@ -143,7 +143,7 @@ const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileCha
                 <h3 className="font-bold text-lg">Submit Report</h3>
                 <input
                   type="file"
-                  className="file-input file-input-bordered w-full max-w-xs mt-4"
+                  className="file-input file-input-bordered w-full max-w-xs mt-[20px]"
                   onChange={handleFileChange}
                 />
                 <div className="modal-action">
