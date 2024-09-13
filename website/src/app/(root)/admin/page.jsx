@@ -20,13 +20,14 @@ export default function Page() {
   }
 
   async function handleSubmit() {
-    console.log("hello world");
     if (!file) {
       alert("You need to upload a file");
+      return; // Exit function if no file is selected
     }
 
     const formData = new FormData();
     formData.append("file", file);
+
     try {
       const response = await fetch("/api/result", {
         cache: "no-store",
@@ -45,23 +46,26 @@ export default function Page() {
   };
 
   // Memoize stats data to avoid unnecessary recalculations
-  const stats = useMemo(() => [
-    { icon: <LiaChalkboardTeacherSolid />, title: "Teachers", value: "31K" },
-    { icon: <PiStudent />, title: "Students", value: "4,200" },
-    { icon: <GrResources />, title: "Schools", value: "1,200" },
-  ], []);
+  const stats = useMemo(
+    () => [
+      { icon: <LiaChalkboardTeacherSolid />, title: "Teachers", value: "31K" },
+      { icon: <PiStudent />, title: "Students", value: "4,200" },
+      { icon: <GrResources />, title: "Schools", value: "1,200" },
+    ],
+    []
+  );
 
   return (
-    <div>
+    <div className="w-full min-h-screen overflow-hidden">
       {/* Video Background - Lazy Load and Add Fallback */}
-      <div>
+      <div className="relative w-full h-[60vh]">
         <video
           src="/video3.mp4"
-          className="slide-in-elliptic-left-fwd w-[700px] absolute mt-[150px] ml-[360px] rounded-xl opacity-70"
+          className="w-full h-full object-cover opacity-70"
           loop
           autoPlay
           muted
-          loading="lazy" // Lazy loading video
+          loading="lazy"
         ></video>
       </div>
 
@@ -69,12 +73,12 @@ export default function Page() {
       <Navbar />
 
       {/* Quote Section */}
-      <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
+      <p className="tracking-in-expand-fwd mt-8 mx-4 text-xl text-center">
         The beautiful thing about learning is that no one can take it away from you.
       </p>
 
       {/* Cards Section */}
-      <div className="flex flex-wrap justify-between mt-[500px] px-10 gap-8 relative">
+      <div className="flex flex-wrap justify-center mt-16 gap-8 px-4">
         {/* Analyse Structure Card */}
         <Card
           title="Analyse Structure"
@@ -82,6 +86,8 @@ export default function Page() {
           imageSrc="/analyse.jpg"
           buttonText="Analyse Now"
           modalId="my_modal_1"
+          handleFileChange={handleFileChange}
+          handleSubmit={handleSubmit}
         />
 
         {/* Updates Card */}
@@ -102,9 +108,9 @@ export default function Page() {
       </div>
 
       {/* Stats Section */}
-      <div className="stats shadow mt-[100px] w-full">
+      <div className="stats shadow mt-12 w-full flex justify-around px-4 py-8">
         {stats.map((stat, index) => (
-          <div key={index} className="stat tracking-in-expand-fwd">
+          <div key={index} className="stat tracking-in-expand-fwd flex-1 text-center mx-4">
             <div className="stat-figure text-xl">{stat.icon}</div>
             <div className="stat-title">{stat.title}</div>
             <div className="stat-value">{stat.value}</div>
@@ -115,17 +121,10 @@ export default function Page() {
   );
 }
 
-const Card = ({ title, description, imageSrc, buttonText, modalId }) => (
-  <div className="card bg-base-100 image-full w-[380px] shadow-xl animate-fade-in-up">
+const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileChange, handleSubmit }) => (
+  <div className="card bg-base-100 image-full w-full max-w-xs shadow-xl animate-fade-in-up">
     <figure>
-      <Image
-        src={imageSrc}
-        alt={title}
-        width={380}
-        height={250}
-        className="rounded-xl"
-        loading="lazy" // Lazy loading image
-      />
+      <Image src={imageSrc} alt={title} width={380} height={250} className="rounded-xl" loading="lazy" />
     </figure>
     <div className="card-body">
       <h2 className="card-title">{title}</h2>
@@ -144,11 +143,15 @@ const Card = ({ title, description, imageSrc, buttonText, modalId }) => (
                 <h3 className="font-bold text-lg">Submit Report</h3>
                 <input
                   type="file"
-                  className="file-input file-input-bordered w-full max-w-xs mt-[20px]"
+                  className="file-input file-input-bordered w-full max-w-xs mt-4"
+                  onChange={handleFileChange}
                 />
                 <div className="modal-action">
+                  <button className="btn" onClick={handleSubmit}>
+                    Submit
+                  </button>
                   <form method="dialog">
-                    <button className="btn">Submit</button>
+                    <button className="btn">Close</button>
                   </form>
                 </div>
               </div>
@@ -158,54 +161,6 @@ const Card = ({ title, description, imageSrc, buttonText, modalId }) => (
           <button className="wobble-hor-bottom btn btn-primary">{buttonText}</button>
         )}
       </div>
-      <div className="card bg-base-100 image-full w-[400px] shadow-xl  -mt-[258px] ml-[500px] absolute">
-  <figure>
-    <img
-      src="https://cdn.pixabay.com/photo/2020/09/24/16/50/board-5599231_1280.png"
-      alt="Shoes" />
-  </figure>
-  <div className="card-body">
-    <h2 className="card-title">Resource Request</h2>
-    <p>See the requests made by the schools</p>
-    <div className="card-actions justify-end">
-      <button className=" wobble-hor-bottom btn btn-primary">See Now</button>
     </div>
   </div>
-</div>
-<div>
-<div className="stats shadow mt-[100px] w-full">
-  <div className="stat">
-    <div className="stat-figure text-xl">
-  <LiaChalkboardTeacherSolid />
-    </div>
-    <div className="stat-title">Teachers</div>
-    <div className="stat-value">31K</div>
-    <div className="stat-desc"></div>
-  </div>
-
-  <div className="stat">
-    <div className="stat-figure text-xl">
-  <PiStudent />
-    </div>
-    <div className="stat-title">Students</div>
-    <div className="stat-value">4,200</div>
-   
-  </div>
-
-  <div className="stat">
-    <div className="stat-figure text-xl">
-   <GrResources />
-    </div>
-    <div className="stat-title">Resources</div>
-    <div className="stat-value">1,200</div>
- 
-  </div>
-</div>
-</div>
-      </div>
-  
-   </div>
-   
-  );
-}
-
+);
