@@ -14,6 +14,17 @@ export async function POST(req) {
     });
 
     const schoolData = await response.json();
+    const code = schoolData["UDISE CODE"];
+
+    const isThere = await prisma.school.findUnique({
+      where: {
+        UDISE_CODE: code,
+      },
+    });
+
+    if (isThere) {
+      return NextResponse.json({ message: "School data already uploaded" });
+    }
 
     await prisma.school.create({
       data: {
@@ -27,14 +38,18 @@ export async function POST(req) {
         Year_of_Establishment: schoolData["Year of Establishment"] || "",
         Boundary_Wall: schoolData["Boundaty Wall"] || false,
         Total_Class_Rooms: schoolData["Total Class Rooms"] || "",
-        Library_Available: schoolData["Library Available"] === 1,
-        Separate_Room_for_HM: schoolData["Separate Room for HM"] === 1,
-        Drinking_Water_Available: schoolData["Drinking Water Available"],
-        Playground_Available: schoolData["Playground Available"] === 1,
-        Electricity_Availability: schoolData["Electricity Availability"],
+        Library_Available: parseInt(schoolData["Library Available"]) === 1,
+        Separate_Room_for_HM:
+          parseInt(schoolData["Separate Room for HM"]) === 1,
+        Drinking_Water_Available:
+          parseInt(schoolData["Drinking Water Available"]) === 1,
+        Playground_Available:
+          parseInt(schoolData["Playground Available"]) === 1,
+        Electricity_Availability:
+          parseInt(schoolData["Electricity Availability"]) === 1,
         Total_Teachers: schoolData["Total Teachers"] || "",
         Total_Washrooms: schoolData["Total Washrooms"] || "",
-        CWSN: schoolData["CWSN"] === 1,
+        CWSN: parseInt(schoolData["CWSN"]) === 1,
         Total_Students: schoolData["Total Students"],
         Result: schoolData["Result"],
       },
@@ -43,4 +58,9 @@ export async function POST(req) {
     console.error(error);
     return NextResponse.json({ message: "unexpected error occured" });
   }
+
+  return NextResponse.json(
+    { message: "Data added succesfully" },
+    { status: 200 }
+  );
 }

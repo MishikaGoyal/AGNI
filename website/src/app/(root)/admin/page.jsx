@@ -16,8 +16,7 @@ export default function Page() {
     setFile(event.target.files[0]);
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit() {
     console.log("hello world");
     if (!file) {
       alert("You need to upload a file");

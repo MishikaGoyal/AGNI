@@ -31,7 +31,7 @@ model User{
 
 model School {
   id               String @id @default(auto()) @map("_id") @db.ObjectId
-  UDISE_CODE       String
+  UDISE_CODE       String @unique
   School_Name      String
   State            String
   School_Category  String
