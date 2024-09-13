@@ -32,14 +32,19 @@ export async function POST(req) {
       );
     }
 
-    const token = await new SignJWT({ userId: user.id, role: user.role })
+    const token = await new SignJWT({ userId: user.loginId, role: user.role })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("1h")
       .sign(secretKey);
 
     const response = NextResponse.json(
-      { message: "Successfully logged in", role: user.role },
+      {
+        message: "Successfully logged in",
+        role: user.role,
+        userId: user.loginId,
+        udiseId: user.udiseId,
+      },
       { status: 200 }
     );
 
