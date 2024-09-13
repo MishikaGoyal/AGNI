@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -7,96 +8,110 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  async function logIn(loginId, password) {
-    if (loginId === "" || password === "") {
-      return;
-    }
+
+  const logIn = useCallback(async () => {
+    if (!loginId || !password) return; 
+
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ loginId, password }),
       });
+
       const resData = await res.json();
-      if (res.status === 200) {
+      if (res.ok) {
         router.push(`/${resData.role.toLowerCase()}`);
+      } else {
+        console.log(resData.message);
       }
-      console.log(resData.message);
     } catch (error) {
-      console.error("an unexpected error occured", error);
+      console.error("An unexpected error occurred", error);
     }
-  }
+  }, [loginId, password, router]);
 
   return (
-    <>
-    <div>
-      <div className='absolute mt-[50px]'>
-        <img src="https://cdn.pixabay.com/photo/2015/08/05/13/55/children-876543_1280.jpg" alt="" className='mt-[70px] ml-[80px] w-[400px]' />
-        <img src="https://cdn.pixabay.com/photo/2018/09/04/10/27/never-stop-learning-3653430_1280.jpg" alt="" className='w-[400px] ml-[80px]' />
-        <div className='flex'>
-          <img src="https://cdn.pixabay.com/photo/2017/12/22/08/01/book-3033196_1280.jpg" alt="" className='w-[400px] ml-[480px] -mt-[493px]' />
-        </div>
+    <div className="relative max-w-screen-md">
+   
+      <div className="absolute mt-[50px]">
+        <Image
+          src="/img1.jpg"
+          alt="Children"
+          className="mt-[70px] ml-[80px] w-[400px] tracking-in-expand-fwd"
+          width={400}
+          height={300}
+          layout="intrinsic"
+        />
+
+        <Image
+          src="/img2.jpg"
+          alt="Learning"
+          className="w-[400px] ml-[80px] tracking-in-expand-fwd"
+          width={400}
+          height={300}
+          layout="intrinsic"
+        />
+        <Image
+          src="/img3.jpg"
+          alt="Book"
+          className="w-[400px] ml-[480px] -mt-[493px] tracking-in-expand-fwd"
+          width={400}
+          height={300}
+          layout="intrinsic"
+        />
+        <Image
+          src="/img4.jpg"
+          alt="Learning"
+          className="w-[400px] ml-[480px] -mt-[6px] tracking-in-expand-fwd"
+          width={400}
+          height={300}
+          layout="intrinsic"
+        />
       </div>
-     <div className="stats stats-vertical lg:stats-horizontal shadow absolute mt-[320px] ml-[80px] ">
-  <div className="stat">
-    <div className="stat-title tracking-in-expand-fwd">Categorising Schools</div>
-    <div className="stat-value">Odd</div>
-    <div className="stat-desc">Standard</div>
-  </div>
 
-  <div className="stat">
-    <div className="stat-title tracking-in-expand-fwd">Restructure</div>
-    <div className="stat-value">Strategy</div>
-    <div className="stat-desc">Ways</div>
-  </div>
+      <div className="stats stats-vertical lg:stats-horizontal shadow absolute mt-[320px] ml-[80px] ">
+        {["Categorising Schools", "Restructure", "Resource", "Feedback"].map(
+          (title, index) => (
+            <div className="stat tracking-in-expand-fwd" key={index}>
+              <div className="stat-title">{title}</div>
+              <div className="stat-value">
+                {["Odd", "Strategy", "Allocation", "Verify"][index]}
+              </div>
+              <div className="stat-desc">
+                {["Standard", "Ways", "To Transform", "Discussions"][index]}
+              </div>
+            </div>
+          )
+        )}
+      </div>
 
-  <div className="stat">
-    <div className="stat-title tracking-in-expand-fwd">Resource</div>
-    <div className="stat-value">Allocation</div>
-    <div className="stat-desc">To Transform</div>
-  </div>
-  <div className="stat ">
-    <div className="stat-title tracking-in-expand-fwd">Feedback</div>
-    <div className="stat-value">Verify</div>
-    <div className="stat-desc">Discussions</div>
-  </div>
-</div>
-    </div>
-    <div className="grid place-items-center h-[100vh] ml-[900px] ">
-      <div className=" w-[20rem]  flex flex-col h-[15rem]  justify-between ">
-        <div className="w-full text-black border-2 rounded-xl">
+
+      <div className="grid place-items-center h-[100vh] ml-[900px]">
+        <div className="w-[20rem] flex flex-col h-[15rem] justify-between">
           <input
- 
-            className="w-full py-3 px-3 rounded-xl tracking-in-expand-fwd "
+            className="w-full py-3 px-3 text-black border-2 rounded-xl tracking-in-expand-fwd"
             type="text"
-            name=""
             placeholder="Login ID"
             value={loginId}
             onChange={(e) => setLoginId(e.target.value)}
           />
-        </div>
-        <div className=" tracking-in-expand-fwd w-full text-black border-2 rounded-xl">
           <input
-            className="w-full py-3 px-3 rounded-xl"
-            type="Password"
-            name=""
-            placeholder="password"
+            className="w-full py-3 px-3 mt-4 text-black border-2 rounded-xl tracking-in-expand-fwd"
+            type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div className="flex items-center justify-center py-3 border bg-black text-white rounded-full hover:bg-slate-600">
           <button
-            className=" bounce-bottom w-[100px] h-[100%]"
-            onClick={() => logIn(loginId, password)}
+            className="w-full py-3 mt-4 bg-black text-white rounded-full hover:bg-slate-600 bounce-bottom"
+            onClick={logIn}
           >
             Sign In
           </button>
         </div>
       </div>
     </div>
-    </>
   );
 }

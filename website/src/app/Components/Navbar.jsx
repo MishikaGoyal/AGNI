@@ -39,7 +39,7 @@ function Navbar() {
   </div>
   
 )}</li>
-        <li><button className='ml-[1300px] mt-[10px] bg-white text-black p-3 rounded-xl'>Signout</button></li>
+        <li><button className='ml-[1300px] mt-[10px] text-white hover:text-black hover:bg-white  p-2 '>Signout</button></li>
       </ul>
     </div>
   </navbar>
