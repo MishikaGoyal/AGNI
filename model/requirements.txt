@@ -1,0 +1,5 @@
+pandas
+pymongo
+scikit-learn
+joblib
+PyPDF2

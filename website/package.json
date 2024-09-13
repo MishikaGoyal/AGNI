@@ -13,6 +13,7 @@
     "bcrypt": "^5.1.1",
     "daisyui": "^4.12.10",
     "dotenv": "^16.4.5",
+    "formidable": "^3.5.1",
     "jose": "^5.8.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.8.0",

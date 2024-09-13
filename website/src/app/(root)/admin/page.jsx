@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
@@ -12,10 +12,36 @@ import Navbar from "@/app/Components/Navbar";
 const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), { ssr: false });
 
 export default function Page() {
-  const [selectedSchool, setSelectedSchool] = useState(null); 
+  const [selectedSchool, setSelectedSchool] = useState(null);
+  const [file, setFile] = useState(null);
+
+  function handleFileChange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  async function handleSubmit() {
+    console.log("hello world");
+    if (!file) {
+      alert("You need to upload a file");
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const response = await fetch("/api/result", {
+        cache: "no-store",
+        method: "POST",
+        body: formData,
+      });
+      const resData = await response.json();
+      console.log(resData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleSearch = (schoolData) => {
-    setSelectedSchool(schoolData); 
+    setSelectedSchool(schoolData);
   };
 
   // Memoize stats data to avoid unnecessary recalculations
@@ -132,6 +158,54 @@ const Card = ({ title, description, imageSrc, buttonText, modalId }) => (
           <button className="wobble-hor-bottom btn btn-primary">{buttonText}</button>
         )}
       </div>
+      <div className="card bg-base-100 image-full w-[400px] shadow-xl  -mt-[258px] ml-[500px] absolute">
+  <figure>
+    <img
+      src="https://cdn.pixabay.com/photo/2020/09/24/16/50/board-5599231_1280.png"
+      alt="Shoes" />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title">Resource Request</h2>
+    <p>See the requests made by the schools</p>
+    <div className="card-actions justify-end">
+      <button className=" wobble-hor-bottom btn btn-primary">See Now</button>
     </div>
   </div>
-);
+</div>
+<div>
+<div className="stats shadow mt-[100px] w-full">
+  <div className="stat">
+    <div className="stat-figure text-xl">
+  <LiaChalkboardTeacherSolid />
+    </div>
+    <div className="stat-title">Teachers</div>
+    <div className="stat-value">31K</div>
+    <div className="stat-desc"></div>
+  </div>
+
+  <div className="stat">
+    <div className="stat-figure text-xl">
+  <PiStudent />
+    </div>
+    <div className="stat-title">Students</div>
+    <div className="stat-value">4,200</div>
+   
+  </div>
+
+  <div className="stat">
+    <div className="stat-figure text-xl">
+   <GrResources />
+    </div>
+    <div className="stat-title">Resources</div>
+    <div className="stat-value">1,200</div>
+ 
+  </div>
+</div>
+</div>
+      </div>
+  
+   </div>
+   
+  );
+}
+
