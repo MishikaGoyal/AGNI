@@ -8,21 +8,18 @@ import { GrResources } from "react-icons/gr";
 import Image from "next/image";
 import Navbar from "@/app/Components/Navbar";
 
-// Dynamically import components that are not immediately needed
 const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), { ssr: false });
 
 export default function Page() {
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [file, setFile] = useState(null);
 
-  function handleFileChange(event) {
-    setFile(event.target.files[0]);
-  }
+  const handleFileChange = (event) => setFile(event.target.files[0]);
 
-  async function handleSubmit() {
+  const handleSubmit = async () => {
     if (!file) {
       alert("You need to upload a file");
-      return; // Exit function if no file is selected
+      return;
     }
 
     const formData = new FormData();
@@ -39,13 +36,10 @@ export default function Page() {
     } catch (error) {
       console.error(error);
     }
-  }
-
-  const handleSearch = (schoolData) => {
-    setSelectedSchool(schoolData);
   };
 
-  // Memoize stats data to avoid unnecessary recalculations
+  const handleSearch = (schoolData) => setSelectedSchool(schoolData);
+
   const stats = useMemo(
     () => [
       { icon: <LiaChalkboardTeacherSolid />, title: "Teachers", value: "31K" },
@@ -56,8 +50,8 @@ export default function Page() {
   );
 
   return (
-    <div className='min-w-max'>
-      {/* Video Background - Lazy Load and Add Fallback */}
+    <div className="min-w-max">
+      {/* Video Background with Lazy Load and Fallback */}
       <div>
         <video
           src="/video3.mp4"
@@ -65,21 +59,19 @@ export default function Page() {
           loop
           autoPlay
           muted
-          loading="lazy" // Lazy loading video
+          preload="none" // Preload optimization
+          poster="/fallback-image.jpg" // Fallback image for video
         ></video>
       </div>
 
-      {/* Navbar Component */}
       <Navbar />
 
-      {/* Quote Section */}
       <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
         The beautiful thing about learning is that no one can take it away from you.
       </p>
 
-      {/* Cards Section */}
       <div className="flex flex-wrap justify-between mt-[500px] px-10 gap-8 relative">
-        {/* Analyse Structure Card */}
+        {/* Reusable Card Component */}
         <Card
           title="Analyse Structure"
           description="Get to know the structure of schools."
@@ -90,7 +82,6 @@ export default function Page() {
           handleSubmit={handleSubmit}
         />
 
-        {/* Updates Card */}
         <Card
           title="Updates"
           description="See the updates by principal."
@@ -98,7 +89,6 @@ export default function Page() {
           buttonText="See Now"
         />
 
-        {/* Resource Allocation Card */}
         <Card
           title="Resource Allocation"
           description="See the requests made by the schools."
@@ -107,7 +97,6 @@ export default function Page() {
         />
       </div>
 
-      {/* Stats Section */}
       <div className="stats shadow mt-[100px] w-full">
         {stats.map((stat, index) => (
           <div key={index} className="stat tracking-in-expand-fwd">

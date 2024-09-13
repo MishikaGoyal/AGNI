@@ -1,5 +1,6 @@
 'use client'
 import Navbar1 from "@/app/Components/Navbar1";
+import Link from "next/link";
 
 export default function Page() {
   const sendMessage = async (apiEndpoint) => {
@@ -62,7 +63,7 @@ export default function Page() {
         </div>
         <div  className='mt-[600px] ml-[600px] absolute w-[600px]'>
         <p className='text-justify'>A feature that helps analyze whether a school is "odd" or "standard" involves a machine learning model that evaluates various school attributes such as infrastructure, student-to-teacher ratio, curriculum quality, extracurricular activities, safety measures, and compliance with educational standards. By processing these factors, the model can classify schools as "odd" if they deviate significantly from typical standards or "standard" if they meet or exceed the accepted norms. This analysis can provide valuable insights for stakeholders, enabling them to identify areas needing improvement or maintain high educational standards</p>
-        <button className="mt-[30px] wobble-hor-bottom btn btn-primary ml-[500px] ">See Now</button>
+        <Link href='/Structure'><button className="mt-[30px] wobble-hor-bottom btn btn-primary ml-[500px] ">See Now</button></Link>
         </div>
         <div className="card bg-base-100 image-full w-[380px] h-[270px] shadow-xl mt-[950px] ml-[900px] absolute">
           <figure>
