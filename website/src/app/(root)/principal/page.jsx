@@ -1,6 +1,7 @@
 "use client";
 import Navbar1 from "@/app/Components/Navbar1";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Page() {
   const sendMessage = async (apiEndpoint) => {
@@ -38,13 +39,13 @@ export default function Page() {
               Get All your School Information <br></br>and upgrade your school
               to standard if not
             </h1>
-            <video
-              src="video2.mp4"
-              className="slide-in-elliptic-left-fwd w-[700px] absolute mt-[120px] ml-[650px] rounded-xl opacity-2"
-              loop
-              autoPlay
-              muted
-            ></video>
+            <Image
+              src="/img6.jpg"
+             width={400}
+             height={200}
+             className='absolute ml-[900px] mt-[100px]'
+             
+            ></Image>
           </div>
           <div>
             <div className="card bg-base-100 image-full w-[380px] h-[250px] shadow-xl mt-[600px] ml-[50px] absolute">

@@ -31,8 +31,8 @@ export default function Page() {
         method: "POST",
         body: formData,
       });
-      const resData = await response.json();
-      console.log(resData);
+      const responseData = await response.json();
+      console.log(responseData);
     } catch (error) {
       console.error(error);
     }
@@ -40,7 +40,7 @@ export default function Page() {
 
   const handleSearch = (schoolData) => setSelectedSchool(schoolData);
 
-  const stats = useMemo(
+  const statistics = useMemo(
     () => [
       { icon: <LiaChalkboardTeacherSolid />, title: "Teachers", value: "31K" },
       { icon: <PiStudent />, title: "Students", value: "4,200" },
@@ -51,17 +51,16 @@ export default function Page() {
 
   return (
     <div className="min-w-max">
-      {/* Video Background with Lazy Load and Fallback */}
+      {/* Background Image */}
       <div>
-        <video
-          src="/video3.mp4"
-          className="slide-in-elliptic-left-fwd w-[700px] absolute mt-[150px] ml-[360px] rounded-xl opacity-70"
-          loop
-          autoPlay
-          muted
-          preload="none" // Preload optimization
-          poster="/fallback-image.jpg" // Fallback image for video
-        ></video>
+        <Image
+          src="/img5.jpg"
+          alt="Background"
+          width={600}
+          height={100}
+          className="rounded-xl absolute ml-[800px] mt-[150px]"
+          priority
+        />
       </div>
 
       <Navbar />
@@ -98,7 +97,7 @@ export default function Page() {
       </div>
 
       <div className="stats shadow mt-[100px] w-full">
-        {stats.map((stat, index) => (
+        {statistics.map((stat, index) => (
           <div key={index} className="stat tracking-in-expand-fwd">
             <div className="stat-figure text-xl">{stat.icon}</div>
             <div className="stat-title">{stat.title}</div>
