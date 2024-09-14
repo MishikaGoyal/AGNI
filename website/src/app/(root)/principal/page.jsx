@@ -137,7 +137,8 @@ export default function Page() {
             </div>
           </div>
           <div className="absolute mt-[1300px] w-[600px] ml-[650px]">
-            <p className="text-justify"></p>
+            <p className="text-justify">
+            The Resource Request feature allows schools to submit requests for essential resources, such as educational materials, infrastructure, and technology, in an organized and streamlined manner. This feature empowers schools to easily communicate their needs, while administrators can efficiently manage, track, and allocate resources based on these requests. By providing a centralized platform for resource management, schools can ensure that their students and teachers have access to the necessary tools for a quality education. The system also allows for transparency and accountability, helping decision-makers prioritize urgent requests and make data-driven choices for resource distribution.</p>
             <button
               onClick={() => sendMessage("/api/sendmessage2")}
               className="mt-[20px] ml-[500px] wobble-hor-bottom btn btn-primary"
