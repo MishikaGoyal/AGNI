@@ -1,1 +1,5 @@
 All the id and passwords are saved here for now. Will add to git ignore later.
+
+principal_user securePassword123
+admin_user anotherSecurePassword456
+user1 abcd
