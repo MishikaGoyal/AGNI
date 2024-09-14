@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 export async function POST(req) {
   const { udiseId } = await req.json();
-  const schoolData = await prisma.school.findUnique({
+  const schoolData = await prisma.school.findFirst({
     where: {
       UDISE_CODE: udiseId,
     },
