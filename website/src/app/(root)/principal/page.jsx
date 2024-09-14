@@ -112,12 +112,12 @@ export default function Page() {
               re-predict the school's classification based on the new data,
               ensuring ongoing relevance and accuracy in the analysis.
             </p>
-          <Link href='principal/Progress'>  <button
-              
-              className="mt-[30px] wobble-hor-bottom btn btn-primary"
-            >
-              Update Now
-            </button></Link>
+            <Link href="principal/progress">
+              {" "}
+              <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
+                Update Now
+              </button>
+            </Link>
           </div>
 
           <div className="card bg-base-100 image-full w-[380px] shadow-xl mt-[1300px] ml-[60px] absolute">
@@ -137,21 +137,7 @@ export default function Page() {
             </div>
           </div>
           <div className="absolute mt-[1300px] w-[600px] ml-[650px]">
-            <p className="text-justify">
-              The "Resource Request for Upgradation to Standard School" feature
-              empowers schools identified as "odd" or below standard to request
-              specific resources needed to meet educational norms. This feature
-              allows school administrators to submit requests for various types
-              of support, such as funding for infrastructure improvements,
-              learning materials, teacher training programs, technology
-              upgrades, or safety equipment. By analyzing the school's current
-              deficiencies and aligning them with the necessary resources, the
-              system can provide targeted recommendations and facilitate direct
-              communication with relevant educational authorities or donors.
-              This ensures a streamlined process for schools to achieve
-              standardization and improve their educational quality, ultimately
-              enhancing the learning environment for students.
-            </p>
+            <p className="text-justify"></p>
             <button
               onClick={() => sendMessage("/api/sendmessage2")}
               className="mt-[20px] ml-[500px] wobble-hor-bottom btn btn-primary"
@@ -191,9 +177,11 @@ export default function Page() {
               established educational standards, ensuring continuous improvement
               and quality education for all students.
             </p>
-           <Link href='/principal/Guidelines'><button className="mt-[30px] wobble-hor-bottom btn btn-primary">
-              Know Now
-            </button></Link> 
+            <Link href="/principal/guidelines">
+              <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
+                Know Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
