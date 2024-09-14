@@ -178,7 +178,7 @@ export default function Page() {
               established educational standards, ensuring continuous improvement
               and quality education for all students.
             </p>
-            <Link href="/principal/guidelines">
+            <Link href="/principal/Guidelines">
               <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
                 Know Now
               </button>
