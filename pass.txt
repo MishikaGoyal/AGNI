@@ -1,0 +1,1 @@
+All the id and passwords are saved here for now. Will add to git ignore later.
