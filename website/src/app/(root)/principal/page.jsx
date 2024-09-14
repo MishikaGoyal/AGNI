@@ -111,12 +111,12 @@ export default function Page() {
               re-predict the school's classification based on the new data,
               ensuring ongoing relevance and accuracy in the analysis.
             </p>
-            <button
-              onClick={() => sendMessage("/api/sendmessage1")}
+          <Link href='principal/Progress'>  <button
+              
               className="mt-[30px] wobble-hor-bottom btn btn-primary"
             >
               Update Now
-            </button>
+            </button></Link>
           </div>
 
           <div className="card bg-base-100 image-full w-[380px] shadow-xl mt-[1300px] ml-[60px] absolute">
@@ -190,9 +190,9 @@ export default function Page() {
               established educational standards, ensuring continuous improvement
               and quality education for all students.
             </p>
-            <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
+           <Link href='/principal/Guidelines'><button className="mt-[30px] wobble-hor-bottom btn btn-primary">
               Know Now
-            </button>
+            </button></Link> 
           </div>
         </div>
       </div>
