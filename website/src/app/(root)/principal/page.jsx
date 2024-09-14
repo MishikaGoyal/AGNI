@@ -32,159 +32,142 @@ export default function Page() {
     <div className="min-w-max">
       <div>
         <Navbar1 />
-
-        <div>
-          <div>
-            <h1 className="tracking-in-expand-fwd absolute mt-[250px] ml-[30px] text-xl font-extrabold">
-              Get All your School Information <br></br>and upgrade your school
-              to standard if not
-            </h1>
-            <Image
-              src="/img6.jpg"
-             width={400}
-             height={200}
-             className='absolute ml-[900px] mt-[100px]'
-             
-            ></Image>
-          </div>
-          <div>
-            <div className="card bg-base-100 image-full w-[380px] h-[250px] shadow-xl mt-[600px] ml-[50px] absolute">
-              <figure>
-                <img
-                  src="https://cdn.pixabay.com/photo/2016/02/06/09/56/science-1182713_1280.jpg"
-                  alt="Shoes"
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">Know Your School</h2>
-                <div className="card-actions justify-end"></div>
-              </div>
+        <div className="flex flex-col md:flex-row items-center justify-evenly mt-12 space-y-4 md:space-y-0 md:space-x-8">
+          <h1 className="tracking-in-expand-fwd text-xl font-extrabold text-center md:text-left">
+            Get All your School Information <br /> and upgrade your school to standard
+          </h1>
+          <Image
+            src="/img6.jpg"
+            width={400}
+            height={200}
+            className="rounded-xl shadow-black"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row items-start justify-evenly mt-8 mb-4 p-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
+          {/* Card - 1 */}
+          <div className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-lg">
+            <figure className="relative w-full h-full">
+              <img
+                src="https://cdn.pixabay.com/photo/2016/02/06/09/56/science-1182713_1280.jpg"
+                alt="Know Your School"
+                className="w-full h-full object-cover rounded-t-lg"
+              />
+            </figure>
+            <div className="card-body p-4">
+              <h2 className="card-title text-xl font-semibold">Know Your School</h2>
+              <Link href="/principal/structure">
+                <button className="btn btn-primary mt-4">See Now</button>
+              </Link>
             </div>
           </div>
-          <div className="mt-[600px] ml-[600px] absolute w-[600px]">
-            <p className="text-justify">
-              A feature that helps analyze whether a school is "odd" or
-              "standard" involves a machine learning model that evaluates
-              various school attributes such as infrastructure,
-              student-to-teacher ratio, curriculum quality, extracurricular
-              activities, safety measures, and compliance with educational
-              standards. By processing these factors, the model can classify
-              schools as "odd" if they deviate significantly from typical
-              standards or "standard" if they meet or exceed the accepted norms.
-              This analysis can provide valuable insights for stakeholders,
-              enabling them to identify areas needing improvement or maintain
-              high educational standards
+
+          {/* Text - 1 */}
+          <div className="w-full md:w-[600px] p-4  ">
+            <p className="text-md text-left leading-relaxed ">
+              This feature leverages a machine learning model to evaluate key school attributes like infrastructure, student-to-teacher ratio, curriculum quality, and safety measures. Schools are classified as "odd" if they significantly deviate from standard norms, or "standard" if they align with accepted educational criteria
             </p>
-            <Link href="/principal/structure">
-              <button className="mt-[30px] wobble-hor-bottom btn btn-primary ml-[500px] ">
-                See Now
-              </button>
-            </Link>
           </div>
-          <div className="card bg-base-100 image-full w-[380px] h-[270px] shadow-xl mt-[950px] ml-[900px] absolute">
+        </div>
+
+
+
+        <div className="flex flex-col md:flex-row items-center justify-evenly p-4 mb-4 shadow-lg rounded-lg bg-gray-200 w-[90%] mx-auto">
+          {/* Text - 2 */}
+          <div className="w-full md:w-[600px] p-4 flex items-center">
+            <p className="text-md leading-relaxed">
+              An "Update School Information" feature allows users to revise key school data, including infrastructure, enrollment, teacher qualifications, and safety protocols. Keeping this data current ensures accurate analysis and reliable school classifications. Updates also prompt the machine learning model to re-evaluate the school’s classification, maintaining accuracy.
+            </p>
+          </div>
+
+          {/* Card - 2 */}
+          <div className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-xl overflow-hidden">
             <figure>
               <img
                 src="https://cdn.pixabay.com/photo/2024/02/28/03/55/ai-generated-8601128_1280.png"
                 alt="Shoes"
+                className="w-full h-full object-cover"
               />
             </figure>
-            <div className="card-body ">
-              <h2 className="card-title">Mark Updates</h2>
-              <p className="absolute mt-[40px]">
-                {" "}
-                If any changes made by you in your school in the time period.Do
-                update us!
+            <div className="card-body flex flex-col justify-between h-1/3 p-4">
+              <h2 className="card-title text-xl font-semibold">Mark Updates</h2>
+              <p className="mt-2 text-sm">
+                If any changes are made by you in your school during this period, please update us!
               </p>
-              <div className="card-actions justify-end"></div>
+              <div className="card-actions mt-auto flex justify-end">
+                <Link href="principal/Progress">
+                  <button className="btn btn-primary">Update Now</button>
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="absolute mt-[950px] w-[600px] ml-[90px]">
-            <p className="text-justify">
-              An "Update School Information" feature allows users to modify and
-              update key data points about a school's attributes, such as
-              infrastructure quality, student enrollment numbers, teacher
-              qualifications, safety protocols, curriculum offerings, and
-              extracurricular programs. This feature ensures that the data used
-              for analysis is always current and accurate, enabling the system
-              to provide more reliable classifications of schools as "odd" or
-              "standard." Additionally, when users update the school
-              information, the machine learning model can be triggered to
-              re-predict the school's classification based on the new data,
-              ensuring ongoing relevance and accuracy in the analysis.
-            </p>
-            <Link href="principal/Progress">
-              {" "}
-              <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
-                Update Now
-              </button>
-            </Link>
-          </div>
+        </div>
 
-          <div className="card bg-base-100 image-full w-[380px] shadow-xl mt-[1300px] ml-[60px] absolute">
-            <figure>
+
+        <div className="flex flex-col md:flex-row items-start justify-evenly p-4 mb-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
+          {/* Card 3 */}
+          <div className="card bg-base-100 image-full w-full md:w-[380px] h-[280px] shadow-xl rounded-xl overflow-hidden flex-shrink-0">
+            <figure className="relative w-full h-full">
               <img
                 src="https://cdn.pixabay.com/photo/2016/11/14/03/16/book-1822474_1280.jpg"
                 alt="Shoes"
+                className="w-full h-[150px] object-cover"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title">Request Resources</h2>
-              <p className="absolute mt-[40px]">
-                Any resources required for upgrading your school from odd
-                structure to standard. Send us a request and will help you!
+            <div className="card-body flex flex-col h-full p-4">
+              <h2 className="card-title text-xl font-semibold">Request Resources</h2>
+              <p className="mt-4 text-sm">
+                Any resources required for upgrading your school from odd structure to standard. Send us a request and we will help you!
               </p>
-              <div className="card-actions justify-end"></div>
+              <div className="card-actions mt-auto flex justify-end">
+                <button onClick={() => sendMessage("/api/sendmessage2")} className="btn btn-primary">Make Request</button>
+              </div>
             </div>
           </div>
-          <div className="absolute mt-[1300px] w-[600px] ml-[650px]">
-            <p className="text-justify">
-            The Resource Request feature allows schools to submit requests for essential resources, such as educational materials, infrastructure, and technology, in an organized and streamlined manner. This feature empowers schools to easily communicate their needs, while administrators can efficiently manage, track, and allocate resources based on these requests. By providing a centralized platform for resource management, schools can ensure that their students and teachers have access to the necessary tools for a quality education. The system also allows for transparency and accountability, helping decision-makers prioritize urgent requests and make data-driven choices for resource distribution.</p>
-            <button
-              onClick={() => sendMessage("/api/sendmessage2")}
-              className="mt-[20px] ml-[500px] wobble-hor-bottom btn btn-primary"
-            >
-              Make Request
-            </button>
-          </div>
-          <div className="card bg-base-100 image-full w-[380px] shadow-xl mt-[1700px] ml-[900px] absolute">
-            <figure>
-              <img
-                src="https://cdn.pixabay.com/photo/2016/03/17/23/07/abstract-1264071_1280.png"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">Guidelines</h2>
-              <p className="absolute mt-[40px]">
-                Any problem in upgrading? Go through these guidelines will help
-                you for sure!
-              </p>
-              <div className="card-actions justify-end"></div>
-            </div>
-          </div>
-          <div className="absolute mt-[1700px] w-[600px] ml-[90px]">
-            <p className="text-justify">
-              The "Guidelines for Upgradation" feature provides schools with a
-              comprehensive set of actionable guidelines to help them transition
-              from "odd" to "standard" status. This feature offers tailored
-              recommendations based on a school's specific areas of improvement,
-              such as enhancing infrastructure, implementing better teaching
-              methodologies, improving student engagement, meeting safety
-              standards, and adopting effective administrative practices. It
-              includes step-by-step instructions, best practices, compliance
-              checklists, and case studies of successful schools that have
-              undergone similar transformations. By following these guidelines,
-              schools can systematically address gaps and align themselves with
-              established educational standards, ensuring continuous improvement
-              and quality education for all students.
+
+          {/* Text Section - 3 */}
+          <div className="w-full md:w-[600px] p-4 ">
+            <p className="text-md text-left leading-relaxed">
+              The Resource Request feature enables schools to request essential resources like educational materials, infrastructure, and technology. It streamlines communication between schools and administrators, facilitating efficient management and allocation of resources. This centralized platform ensures access to necessary tools for quality education and improves transparency in resource distribution.
             </p>
-            <Link href="/principal/Guidelines">
-              <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
-                Know Now
-              </button>
-            </Link>
           </div>
         </div>
+
+
+
+        <div className="flex flex-col md:flex-row items-center justify-evenly p-4 mb-4 shadow-lg rounded-lg bg-gray-200 w-[90%] mx-auto">
+          {/* Text -4 */}
+          <div className="w-full md:w-[600px] flex items-center">
+            <p className="text-md leading-relaxed">
+              The "Guidelines for Upgradation" feature offers schools detailed steps to transition from "odd" to "standard" status. It includes customized recommendations, best practices, compliance checklists, and case studies to improve various aspects such as infrastructure, teaching methods, student engagement. By following these guidelines, schools can address gaps effectively, align with educational standards, and ensure continuous improvement and high-quality education.
+            </p>
+          </div>
+
+          {/* Card-4 */}
+          <div className="card bg-base-100 image-full w-full md:w-[380px] h-[280px] shadow-xl rounded-xl overflow-hidden">
+            <figure className="w-full h-2/3">
+              <img
+                src="https://cdn.pixabay.com/photo/2016/03/17/23/07/abstract-1264071_1280.png"
+                alt="Guidelines"
+                className="w-full h-full object-cover"
+              />
+            </figure>
+            <div className="card-body flex flex-col justify-between h-1/3 p-4">
+              <h2 className="card-title text-xl font-semibold">Guidelines</h2>
+              <p className="mt-2 text-sm">
+                Any problem in upgrading? Go through these guidelines; they will help you for sure!
+              </p>
+              <div className="card-actions mt-auto flex justify-end">
+                <Link href="/principal/Guidelines">
+                  <button className="btn btn-primary">Know How</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </div>
     </div>
   );

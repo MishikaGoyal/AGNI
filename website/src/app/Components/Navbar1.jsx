@@ -3,14 +3,16 @@ import Navbar from './Navbar'
 
 function Navbar1() {
   return (
-    <navbar className='w-[100vh]' >
-    <div className='bg-gray-900 text-white h-[60px]'>
-      <ul className='justify-between'>
-       <li> <h1 className="tracking-in-expand-fwd ml-[40px]  text-xl">WELCOME BACK!!</h1></li>
-        <li className='-mt-[10px]'><button className='ml-[1300px] -mt-[90px] text-white hover:text-black p-2 hover:bg-white'>Signout</button></li>
-      </ul>
-    </div>
-  </navbar>
+    <nav className='bg-gray-900 text-white h-[60px] flex items-center'>
+      <div className='w-full max-w-screen-xl mx-auto px-4'>
+        <ul className='flex justify-self-start w-full'>
+          <li>
+            <h1 className="text-xl font-semibold tracking-tight">WELCOME PRINCIPAL</h1>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
   )
 }
 
