@@ -54,6 +54,10 @@ model School {
 }
 
 
+model schoolUpdates {
+    id  String @id @default(auto()) @map("_id") @db.ObjectId 
+}
+
 
 
 
