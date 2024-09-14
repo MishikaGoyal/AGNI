@@ -112,7 +112,7 @@ export default function Page() {
               re-predict the school's classification based on the new data,
               ensuring ongoing relevance and accuracy in the analysis.
             </p>
-            <Link href="principal/progress">
+            <Link href="principal/Progress">
               {" "}
               <button className="mt-[30px] wobble-hor-bottom btn btn-primary">
                 Update Now
