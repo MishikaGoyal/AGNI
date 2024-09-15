@@ -82,13 +82,13 @@ const TransitionPlatform = () => {
 };
 
 const Section = ({ title, items }) => (
-  <section className="bg-blue-50 py-12">
+  <section className="bg-blue-200 py-12">
     <div className="max-w-6xl mx-auto px-6">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">{title}</h2>
       <ul className="space-y-6">
         {items.map((item, index) => (
           <li key={index} className="bg-white p-6 shadow-md rounded-md">
-            <h3 className="text-2xl font-semibold text-blue-200">{item.title}</h3>
+            <h3 className="text-2xl font-semibold text-blue-400">{item.title}</h3>
             <p className="text-gray-700 mt-2">{item.description}</p>
             <a
               href={item.pdfLink}
