@@ -67,9 +67,9 @@ def get_reasons():
 
 @app.route('/suggestions', methods=['GET','POST'])
 def generate_guidance():
-    data = request.get_json()
+    full_data = request.get_json()
 
-    reason = reasons(data)
+    reason = reasons(full_data)
 
     if not data or 'Reasons' not in data:
         return jsonify({"error": "No reasons provided"}), 400
