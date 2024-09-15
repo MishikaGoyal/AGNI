@@ -16,9 +16,27 @@ export async function POST(req) {
     );
   }
 
+  let formattedSchoolData = {
+    ...schoolData,
+    Boundary_Wall: `${schoolData.Boundary_Wall === false ? "2" : "1"}`,
+    Library_Available: `${schoolData.Library_Available === false ? "2" : "1"}`,
+    Separate_Room_for_HM: `${
+      schoolData.Separate_Room_for_HM === false ? "2" : "1"
+    }`,
+    Drinking_Water_Available: `${
+      schoolData.Drinking_Water_Available === false ? "2" : "1"
+    }`,
+    Playground_Available: `${
+      schoolData.Playground_Available === false ? "2" : "1"
+    }`,
+    Electricity_Availability: `${
+      schoolData.Electricity_Availability === false ? "2" : "1"
+    }`,
+  };
+
   console.log(schoolData);
   return NextResponse.json(
-    { message: "School data found ", data: schoolData },
+    { message: "School data found ", data: formattedSchoolData },
     { status: 200 }
   );
 }
