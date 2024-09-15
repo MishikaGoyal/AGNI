@@ -3,35 +3,17 @@ import Navbar1 from "@/app/Components/Navbar1";
 import Link from "next/link";
 import Image from "next/image";
 
+
 export default function Page() {
-  const sendMessage = async (apiEndpoint) => {
-    const phoneNumber = "+918651599266";
 
-    try {
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ to: phoneNumber }),
-      });
 
-      const data = await response.json();
-      if (data.success) {
-        alert("Message sent successfully!");
-      } else {
-        alert("Failed to send message: " + data.error);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Error sending message");
-    }
-  };
+
+  
 
   return (
     <div className="min-w-max">
       <div>
-        <Navbar1 />
+        <Navbar1  text={"PRINCIPAL"}/>
         <div className="flex flex-col md:flex-row items-center justify-evenly mt-12 space-y-4 md:space-y-0 md:space-x-8">
           <h1 className="tracking-in-expand-fwd text-xl font-extrabold text-center md:text-left">
             Get All your School Information <br /> and upgrade your school to
@@ -105,7 +87,7 @@ export default function Page() {
                 period, please update us!
               </p>
               <div className="card-actions mt-auto flex justify-end">
-                <Link href="principal/progress">
+                <Link href="principal/Progress">
                   <button className="btn btn-primary">Update Now</button>
                 </Link>
               </div>
@@ -132,12 +114,11 @@ export default function Page() {
                 structure to standard. Send us a request and we will help you!
               </p>
               <div className="card-actions mt-auto flex justify-end">
-                <button
-                  onClick={() => sendMessage("/api/sendmessage2")}
-                  className="btn btn-primary"
-                >
-                  Make Request
-                </button>
+
+                <Link href="/principal/algorithm">
+                  <button className="btn btn-primary ">Check Resources</button>
+                </Link>
+        
               </div>
             </div>
           </div>
@@ -198,3 +179,6 @@ export default function Page() {
     </div>
   );
 }
+
+
+/* sendMessage("/api/sendmessage2") */

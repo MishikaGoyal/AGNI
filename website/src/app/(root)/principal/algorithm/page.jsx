@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from 'react';
 import axios from 'axios';
+import Navbar1 from '@/app/Components/Navbar1';
 
 const inputBody = {
-    
+
     "UDISE CODE": "08  12  26  05  903",
     "School Name": "MERRYLAND SCHOOL PS",
     "State": "Rajasthan",
@@ -29,7 +30,7 @@ function Page() {
     const [inputData, setInputData] = useState(inputBody);
     const [result, setResult] = useState(null);
 
-    const handleSubmit = async () => {
+    const handleAlgorithm = async () => {
         try {
             const response = await axios.post('/api/algorithm', inputData);
             setResult(response.data);
@@ -39,11 +40,50 @@ function Page() {
         }
     };
 
+    const sendMessage = async (apiEndpoint) => {
+        const phoneNumber = "+918651599266";
+    
+        try {
+          const response = await fetch(apiEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ to: phoneNumber }),
+          });
+    
+          const data = await response.json();
+          if (data.success) {
+            alert("Message sent successfully!");
+          } else {
+            alert("Failed to send message: " + data.error);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error sending message");
+        }
+      };
+
     return (
-        <div className="flex flex-col items-center mt-4">
-            <h1 className="text-2xl font-bold mb-4">Grant Calculation Page</h1>
-            <button onClick={handleSubmit} className='btn btn-outline mt-4'>Calculate Output</button>
-            {result && <pre className="mt-4">{JSON.stringify(result, null, 2)}</pre>}
+        <div>
+            <Navbar1 text={"PRINCIPAL"} />
+
+            <div className="flex flex-col items-center mt-4">
+                <h1 className="text-2xl font-bold mb-4">Grant Calculation Page</h1>
+
+                {/* Align buttons in a row with some space between them */}
+                <div className="flex space-x-4 mt-4">
+
+                    {/* button for algorithm */}
+
+                    <button onClick={handleAlgorithm} className='btn btn-outline'>Calculate Output</button>
+
+                    {/* button for message */}
+                    <button className='btn btn-outline' onClick={()=>  sendMessage("/api/sendmessage2")}>Make Request</button>
+                </div>
+
+                {result && <pre className="mt-4">{JSON.stringify(result, null, 2)}</pre>}
+            </div>
         </div>
     );
 }
