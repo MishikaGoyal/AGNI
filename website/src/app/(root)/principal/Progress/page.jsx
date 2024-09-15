@@ -10,6 +10,31 @@ export default function UpdateSchool() {
       method: "POST",
       body: JSON.stringify(formData),
     });
+    const resData = await response.json();
+    if (!response.ok) {
+      console.error("Error in submitting form");
+      alert("Error in submitting data");
+    } else if (resData.flag) {
+      alert("Update request submitted succesfully");
+      setFormData({
+        UDISE_CODE: "",
+        State: "",
+        Grade_Configuration: "",
+        Boundary_Wall: false,
+        Total_Class_Rooms: "",
+        Library_Available: false,
+        Separate_Room_for_HM: false,
+        Drinking_Water_Available: false,
+        Playground_Available: false,
+        Electricity_Availability: false,
+        Total_Teachers: "",
+        Total_Washrooms: "",
+        Total_Students: "",
+        Result: "",
+      });
+    } else {
+      alert("Update request is still pending");
+    }
   };
 
   useEffect(() => {

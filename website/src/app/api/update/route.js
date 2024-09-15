@@ -4,6 +4,18 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 export async function POST(req) {
   const data = await req.json();
+  const exists = await prisma.schoolUpdates.findUnique({
+    where: {
+      UDISE_CODE: data.UDISE_CODE,
+    },
+  });
+
+  if (exists) {
+    return NextResponse.json({
+      message: "Update request is still pending",
+      flag: false,
+    });
+  }
   const update = await prisma.schoolUpdates.create({
     data: {
       UDISE_CODE: data.UDISE_CODE,
