@@ -6,7 +6,8 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { PiStudent } from "react-icons/pi";
 import { GrResources } from "react-icons/gr";
 import Image from "next/image";
-import Navbar from "@/app/Components/Navbar";
+
+import Navbar1 from "@/app/Components/Navbar1";
 
 const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), { ssr: false });
 
@@ -63,7 +64,7 @@ export default function Page() {
         />
       </div>
 
-      <Navbar />
+      <Navbar1 text={"ADMIN"}/>
 
       <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
         The beautiful thing about learning is that no one can take it away from you.
@@ -90,7 +91,7 @@ export default function Page() {
 
         <Card
           title="Resource Allocation"
-          description="See the requests made by the schools."
+          description="See the list of schools that makes the request"
           imageSrc="/resource.jpg"
           buttonText="See Now"
         />

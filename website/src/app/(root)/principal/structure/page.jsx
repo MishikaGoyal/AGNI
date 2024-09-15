@@ -1,15 +1,16 @@
 "use client";
+import { NextResponse } from "next/server";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
   const [schoolData, setSchoolData] = useState({});
   const [udiseId, setUdiseId] = useState(null);
-
+  const [reason, setReason] = useState(null);
   useEffect(() => {
     const id = sessionStorage.getItem("udiseId");
     if (id) {
       setUdiseId(id);
-      fetchSchoolData(id);
+      fetchSchoolData();
     }
   }, []);
 
@@ -23,10 +24,23 @@ const Page = () => {
       console.error("Error in fetching school data");
     } else {
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       setSchoolData(data);
-
     }
+  };
+
+  const generateReason = async () => {
+    const response = await fetch("/api/reasons", {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(schoolData),
+    });
+    if (!response.ok) {
+      console.error({ message: "Error in fetching data" });
+    }
+    const resData = await response.json();
+    setReason(resData);
+    console.log(resData);
   };
 
   return (
@@ -36,8 +50,11 @@ const Page = () => {
         <strong>School Data:</strong>
         <pre>{JSON.stringify(schoolData, null, 2)}</pre>
       </div>
+      <div>
+        <button onClick={generateReason}>Find Out Why</button>
+        {reason !== null && <div>{JSON.stringify(reason)}</div>}
+      </div>
     </div>
-
   );
 };
 
