@@ -5,38 +5,38 @@ import Head from 'next/head';
 const data = {
   infrastructurePlanning: [
     {
-      title: 'Classroom Design Optimization',
+      title: 'samagra siksha education',
       description: 'Guidelines for optimizing classroom layouts to support new standards.',
       pdfLink: 'https://samagra.education.gov.in/docs/ss_implementation.pdf',
     },
     {
-      title: 'Facility Modernization',
+      title: 'Rashtriya Madhyamik Shiksha Abhiyan',
       description: 'Best practices for upgrading facilities during the transition.',
-      pdfLink: '/pdfs/facility_modernization.pdf',
+      pdfLink: 'https://www.education.gov.in/rmsa',
     },
   ],
   gradeReconfiguration: [
     {
-      title: 'Grade Clustering Techniques',
-      description: 'How to efficiently reconfigure grades to match standard structures.',
-      pdfLink: '/pdfs/grade_clustering.pdf',
+      title: 'Teacher Education',
+      description: 'Preparation of Teachers to face the challenges of the dynamic society',
+      pdfLink: 'https://ncert.nic.in/pdf/shikshak-parv/TeacherandTeacherEducation.pdf',
     },
     {
-      title: 'Teacher Allocation and Training',
+      title: 'udise plus ',
       description: 'Strategies for reallocating teachers and providing necessary training.',
-      pdfLink: '/pdfs/teacher_allocation.pdf',
+      pdfLink: 'https://www.education.gov.in/udise-report-2021-22',
     },
   ],
   communityEngagement: [
     {
-      title: 'Parent and Student Workshops',
-      description: 'Engaging the community with informative workshops and open discussions.',
-      pdfLink: '/pdfs/parent_student_workshops.pdf',
+      title: 'national education policy',
+      description: 'Education Policy lays particular emphasis on the development of the potential of each individual',
+      pdfLink: 'https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English.pdf',
     },
     {
-      title: 'School-Community Partnerships',
-      description: 'Building partnerships with local organizations to support the transition.',
-      pdfLink: '/pdfs/school_community_partnerships.pdf',
+      title: 'right to education',
+      description: 'THE RIGHT OF CHILDREN TO FREE AND COMPULSORY EDUCATION ',
+      pdfLink: 'https://www.indiacode.nic.in/bitstream/123456789/13682/1/rte_act_2009.pdf',
     },
   ],
 };
