@@ -12,7 +12,7 @@ export default function Page() {
       return;
     }
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
