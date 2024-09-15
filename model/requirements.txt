@@ -4,3 +4,4 @@ scikit-learn
 joblib
 PyPDF2
 google.generativeai
+python-dotenv
