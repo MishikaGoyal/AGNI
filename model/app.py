@@ -48,23 +48,15 @@ def predict():
 
     return full_data
 
-@app.route('/reasons', methods=['GET'])
+@app.route('/reasons', methods=['POST'])
 def get_reasons():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
 
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+    full_data = request.get_json()
 
-    filename = secure_filename(file.filename)
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    file.save(filepath)
-
-    full_data = extract_data_from_pdf(filepath)
-
+    if not full_data:
+        return jsonify({"error": "No data provided"}), 400
+    
     reasons_output = reasons(full_data)
-
     return reasons_output
 
 if __name__ == '__main__':

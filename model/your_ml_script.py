@@ -130,7 +130,7 @@ def reasons(record):
     if (total_classrooms < total_teachers):
         s=  f'Each teacher should have one classroom. You have {total_teachers} teachers and {total_classrooms} classrooms.'
         lists.append(s)
-    else:
+    if (len(lists)==0):
         lists.append('Your school is Standard Structure.')
     
     return lists

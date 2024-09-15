@@ -20,6 +20,8 @@ def check_conditions(record):
     electricity_availability = int(record.get("Electricity Availability", 0))
     total_classrooms = int(record.get("Total Class Rooms", 0))
 
+    print (record)
+
     lists=[]
 
     if (total_teachers * 40 < total_students):
