@@ -5,5 +5,5 @@ import Image from "next/image";
 export default function Home() {
   const router = useRouter();
   router.push("/login");
-  return <main className="">hello world</main>;
+  return <main className=""></main>;
 }
