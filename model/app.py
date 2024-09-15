@@ -14,7 +14,7 @@ load_dotenv()
 api_key = os.getenv("api_key")
 genai.configure(api_key=api_key)
 
-model = joblib.load('school_result_model.pkl')
+model = joblib.load('model/school_result_model.pkl')
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
@@ -65,7 +65,7 @@ def get_reasons():
     reasons_output = reasons(full_data)
     return reasons_output
 
-@app.route('/suggestions', methods=['POST'])
+@app.route('/suggestions', methods=['GET','POST'])
 def generate_guidance():
     data = request.get_json()
 
