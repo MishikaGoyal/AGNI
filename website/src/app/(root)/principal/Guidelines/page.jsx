@@ -5,7 +5,7 @@ import Head from 'next/head';
 const data = {
   infrastructurePlanning: [
     {
-      title: 'samagra siksha education',
+      title: 'Samagra Siksha Education',
       description: 'Guidelines for optimizing classroom layouts to support new standards.',
       pdfLink: 'https://samagra.education.gov.in/docs/ss_implementation.pdf',
     },
@@ -22,19 +22,19 @@ const data = {
       pdfLink: 'https://ncert.nic.in/pdf/shikshak-parv/TeacherandTeacherEducation.pdf',
     },
     {
-      title: 'udise plus ',
+      title: 'UDISE Plus ',
       description: 'Strategies for reallocating teachers and providing necessary training.',
       pdfLink: 'https://www.education.gov.in/udise-report-2021-22',
     },
   ],
   communityEngagement: [
     {
-      title: 'national education policy',
+      title: 'National Education Policy',
       description: 'Education Policy lays particular emphasis on the development of the potential of each individual',
       pdfLink: 'https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English.pdf',
     },
     {
-      title: 'right to education',
+      title: 'Right To Education',
       description: 'THE RIGHT OF CHILDREN TO FREE AND COMPULSORY EDUCATION ',
       pdfLink: 'https://www.indiacode.nic.in/bitstream/123456789/13682/1/rte_act_2009.pdf',
     },
@@ -46,7 +46,7 @@ const TransitionPlatform = () => {
     <div>
       <main className="bg-black">
         {/* Header */}
-        <header className="bg-violet-700 py-8 shadow-md">
+        <header className="bg-blue-300 py-8 shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl font-bold text-white">School Transition Platform</h1>
             <p className="text-xl text-white mt-2">
@@ -72,7 +72,7 @@ const TransitionPlatform = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-violet-700 py-4">
+      <footer className="bg-blue-300 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           © 2024 School Transition Platform. All rights reserved.
         </div>
@@ -82,19 +82,19 @@ const TransitionPlatform = () => {
 };
 
 const Section = ({ title, items }) => (
-  <section className="bg-violet-200 py-12">
+  <section className="bg-blue-50 py-12">
     <div className="max-w-6xl mx-auto px-6">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">{title}</h2>
       <ul className="space-y-6">
         {items.map((item, index) => (
           <li key={index} className="bg-white p-6 shadow-md rounded-md">
-            <h3 className="text-2xl font-semibold text-violet-700">{item.title}</h3>
+            <h3 className="text-2xl font-semibold text-blue-200">{item.title}</h3>
             <p className="text-gray-700 mt-2">{item.description}</p>
             <a
               href={item.pdfLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-800 transition"
+              className="inline-block mt-4 bg-blue-200 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
             >
               Download PDF
             </a>

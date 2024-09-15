@@ -81,7 +81,7 @@ export default function Page() {
                 period, please update us!
               </p>
               <div className="card-actions mt-auto flex justify-end">
-                <Link href="principal/Progress">
+                <Link href="principal/progress">
                   <button className="btn btn-primary">Update Now</button>
                 </Link>
               </div>
