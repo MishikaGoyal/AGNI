@@ -1,6 +1,7 @@
 import pandas as pd
 import PyPDF2
 import re
+import google.generativeai as genai
 
 # Function to convert range strings to numeric values
 def convert_range_to_numeric(value):
@@ -134,3 +135,11 @@ def reasons(record):
         lists.append('Your school is Standard Structure.')
     
     return lists
+
+def removeSymbols(response):
+    return response.strip().replace("*", '')
+
+def gemini_pro_response(user_prompt):
+    gemini_pro_model = genai.GenerativeModel("gemini-pro")
+    response = gemini_pro_model.generate_content(user_prompt)
+    return removeSymbols(response.text)

@@ -5,7 +5,7 @@ import joblib
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from your_ml_script import extract_data_from_pdf, check_conditions, reasons
+from your_ml_script import extract_data_from_pdf, check_conditions, reasons, gemini_pro_response
 
 app = Flask(__name__)
 CORS(app)
