@@ -71,8 +71,8 @@ def generate_guidance():
 
     reason = reasons(full_data)
 
-    if not data or 'Reasons' not in data:
-        return jsonify({"error": "No reasons provided"}), 400
+    if not full_data:
+        return jsonify({"error": "No data provided"}), 400
 
     prompt_header = '''
     You are Sam, an AI assistant helping school principals in India align their schools with the Samagra Shiksha Framework and the New Education Policy (NEP), use data from these policies as well as other policies, and use correct data only.
