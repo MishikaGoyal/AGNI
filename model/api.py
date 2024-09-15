@@ -1,6 +1,10 @@
 import os
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyA5sshngNj9Yiz2U8kHrH3q8oGY1rrXq1c")
+from your_ml_script import reasons
+from dotenv import load_dotenv
+load_dotenv()
+api_key= os.getenv("api_key")
+genai.configure(api_key=api_key)
 prompt_header = '''
 You are Sam, an AI assistant helping school principals in India align their schools with the Samagra Shiksha Framework and the New Education Policy (NEP), use data from these policies as well as other policies, and use correct data only.
 

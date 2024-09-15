@@ -3,17 +3,11 @@ import Navbar1 from "@/app/Components/Navbar1";
 import Link from "next/link";
 import Image from "next/image";
 
-
 export default function Page() {
-
-
-
-  
-
   return (
     <div className="min-w-max">
       <div>
-        <Navbar1  text={"PRINCIPAL"}/>
+        <Navbar1 text={"PRINCIPAL"} />
         <div className="flex flex-col md:flex-row items-center justify-evenly mt-12 space-y-4 md:space-y-0 md:space-x-8">
           <h1 className="tracking-in-expand-fwd text-xl font-extrabold text-center md:text-left">
             Get All your School Information <br /> and upgrade your school to
@@ -114,11 +108,9 @@ export default function Page() {
                 structure to standard. Send us a request and we will help you!
               </p>
               <div className="card-actions mt-auto flex justify-end">
-
                 <Link href="/principal/algorithm">
                   <button className="btn btn-primary ">Check Resources</button>
                 </Link>
-        
               </div>
             </div>
           </div>
@@ -168,7 +160,7 @@ export default function Page() {
                 help you for sure!
               </p>
               <div className="card-actions mt-auto flex justify-end">
-                <Link href="/principal/guidelines">
+                <Link href="/principal/Guidelines">
                   <button className="btn btn-primary">Know How</button>
                 </Link>
               </div>
@@ -179,6 +171,5 @@ export default function Page() {
     </div>
   );
 }
-
 
 /* sendMessage("/api/sendmessage2") */
