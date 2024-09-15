@@ -1,7 +1,7 @@
 // Helper functions
 const getCurrentYear = () => new Date().getFullYear();
 
-const extractMainValue = ({ "Year of Establishment": yearOfEstablishment, "Result": result, "School Management": schoolManagement }) => ({
+const extractMainValue = ({ "Year_of_Establishment": yearOfEstablishment, "Result": result, "School_Management": schoolManagement }) => ({
   yearOfEstablishment: parseInt(yearOfEstablishment, 10),
   result,
   schoolManagement: parseInt(schoolManagement, 10),
@@ -11,35 +11,35 @@ const calculateYear = (yearOfEstablishment, currentYear) => currentYear - yearOf
 
 const managementCategory = (schoolManagement) => [1, 2, 3, 6, 89, 90, 91, 4, 7, 92, 93, 94, 95, 96, 101, 8, 97, 98, 102].includes(schoolManagement);
 
-const getTeacherandStudent = ({ "Total Teachers": teachers, "Total Students": students }) => ({
+const getTeacherandStudent = ({ "Total_Teachers": teachers, "Total_Students": students }) => ({
   current_teacher: parseInt(teachers, 10),
   current_stud: parseInt(students, 10),
 });
 
-const getTeahcerAndClass = ({ "Total Class Rooms": classrooms, "Total Teachers": teachers }) => ({
+const getTeahcerAndClass = ({ "Total_Class_Rooms": classrooms, "Total_Teachers": teachers }) => ({
   current_classroom: parseInt(classrooms, 10),
   current_teacher: parseInt(teachers, 10),
 });
 
-const getLibrary = ({ "Library Available": isLibrary, "School Category": school_category }) => ({
+const getLibrary = ({ "Library_Available": isLibrary, "School_Category": school_category }) => ({
   isLibrary: parseInt(isLibrary, 10),
   school_category: parseInt(school_category, 10),
 });
 
-const getWashroomData = ({ "Total Washrooms": washrooms, "Total Students": total_students }) => {
+const getWashroomData = ({ "Total_Washrooms": washrooms, "Total_Students": total_students }) => {
   const [boys_washroom, girls_washroom] = washrooms.replace(/[()]/g, '').split(',').map(Number);
   return { boys_washroom, girls_washroom, total_students: parseInt(total_students, 10) };
 };
 
-const getDrinkingWater = ({ "Drinking Water Available": drinkingWater }) => parseInt(drinkingWater, 10);
+const getDrinkingWater = ({ "Drinking_Water_Available": drinkingWater }) => parseInt(drinkingWater, 10);
 
-const getBoundaryWall = ({ "Boundary Wall": wall }) => parseInt(wall, 10);
+const getBoundaryWall = ({ "Boundary_Wall": wall }) => parseInt(wall, 10);
 
-const getHeadmasterRoom = ({ "Separate Room for HM": headmaster_room }) => parseInt(headmaster_room, 10);
+const getHeadmasterRoom = ({ "Separate_Room_for_HM": headmaster_room }) => parseInt(headmaster_room, 10);
 
-const getPlayground = ({ "Playground Available": playground }) => parseInt(playground, 10);
+const getPlayground = ({ "Playground_Available": playground }) => parseInt(playground, 10);
 
-const getElectricity = ({ "Electricity Availability": electricity }) => parseInt(electricity, 10);
+const getElectricity = ({ "Electricity_Availability": electricity }) => parseInt(electricity, 10);
 
 // Main logic functions
 
