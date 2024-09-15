@@ -18,7 +18,7 @@ export async function POST(req) {
     });
   }
 
-  const resData = await response.json();
+  const resData = await response.text();
 
   return NextResponse.json(resData);
 }

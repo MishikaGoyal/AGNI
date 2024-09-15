@@ -9,7 +9,9 @@ import Image from "next/image";
 
 import Navbar1 from "@/app/Components/Navbar1";
 
-const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), { ssr: false });
+const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), {
+  ssr: false,
+});
 
 export default function Page() {
   const [selectedSchool, setSelectedSchool] = useState(null);
@@ -64,10 +66,11 @@ export default function Page() {
         />
       </div>
 
-      <Navbar1 text={"ADMIN"}/>
+      <Navbar1 text={"ADMIN"} />
 
       <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
-        The beautiful thing about learning is that no one can take it away from you.
+        The beautiful thing about learning is that no one can take it away from
+        you.
       </p>
 
       <div className="flex flex-wrap justify-between mt-[500px] px-10 gap-8 relative">
@@ -110,10 +113,25 @@ export default function Page() {
   );
 }
 
-const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileChange, handleSubmit }) => (
+const Card = ({
+  title,
+  description,
+  imageSrc,
+  buttonText,
+  modalId,
+  handleFileChange,
+  handleSubmit,
+}) => (
   <div className="card bg-base-100 image-full w-[380px] shadow-xl animate-fade-in-up">
     <figure>
-      <Image src={imageSrc} alt={title} width={380} height={250} className="rounded-xl" loading="lazy" />
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={380}
+        height={250}
+        className="rounded-xl"
+        loading="lazy"
+      />
     </figure>
     <div className="card-body">
       <h2 className="card-title">{title}</h2>
@@ -147,7 +165,9 @@ const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileCha
             </dialog>
           </>
         ) : (
-          <button className="wobble-hor-bottom btn btn-primary">{buttonText}</button>
+          <button className="wobble-hor-bottom btn btn-primary">
+            {buttonText}
+          </button>
         )}
       </div>
     </div>

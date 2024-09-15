@@ -2,6 +2,86 @@
 import { NextResponse } from "next/server";
 import React, { useEffect, useState } from "react";
 
+export function ActionPlan({ data }) {
+  return (
+    <div className="p-8 bg-white shadow-md rounded-lg max-w-4xl mx-auto">
+      {/* Comparison to Standards */}
+      <h2 className="text-xl font-bold mb-4">Comparison to Standards</h2>
+      <div className="mb-6">
+        <p>
+          <strong>Teacher-student ratio:</strong> The recommended
+          teacher-student ratio is 1:40, but your school has a ratio of{" "}
+          {data.teacherStudentRatio}.
+        </p>
+        <p>
+          <strong>Infrastructure:</strong> {data.infrastructure}
+        </p>
+      </div>
+
+      {/* Action Plan */}
+      <h2 className="text-xl font-bold mb-4">Action Plan</h2>
+
+      {/* Immediate Actions */}
+      <h3 className="text-lg font-semibold mb-2">Immediate Actions</h3>
+      <ul className="list-disc pl-6 mb-6">
+        <li>
+          <strong>Teacher reallocation:</strong>{" "}
+          {data.immediateActions.teacherReallocation}
+        </li>
+        <li>
+          <strong>Boundary wall construction:</strong>{" "}
+          {data.immediateActions.boundaryWallConstruction}
+        </li>
+      </ul>
+
+      {/* Resource Use */}
+      <h3 className="text-lg font-semibold mb-2">Resource Use</h3>
+      <ul className="list-disc pl-6 mb-6">
+        <li>
+          <strong>Samagra Shiksha Scheme:</strong>{" "}
+          {data.resourceUse.samagraShiksha}
+        </li>
+        <li>
+          <strong>RMSA:</strong> {data.resourceUse.rmsa}
+        </li>
+      </ul>
+
+      {/* Implementation */}
+      <h2 className="text-xl font-bold mb-4">Implementation</h2>
+
+      {/* Stakeholder Involvement */}
+      <h3 className="text-lg font-semibold mb-2">Stakeholder Involvement</h3>
+      <ul className="list-disc pl-6 mb-6">
+        <li>
+          <strong>School authorities:</strong>{" "}
+          {data.implementation.stakeholders.schoolAuthorities}
+        </li>
+        <li>
+          <strong>Teachers:</strong> {data.implementation.stakeholders.teachers}
+        </li>
+        <li>
+          <strong>Students:</strong> {data.implementation.stakeholders.students}
+        </li>
+      </ul>
+
+      {/* Resource Management */}
+      <h3 className="text-lg font-semibold mb-2">Resource Management</h3>
+      <p>{data.implementation.resourceManagement}</p>
+
+      {/* Timeline */}
+      <h3 className="text-lg font-semibold mt-6">Timeline</h3>
+      <ul className="list-disc pl-6">
+        <li>
+          <strong>Immediate:</strong> {data.timeline.immediate}
+        </li>
+        <li>
+          <strong>Long-term:</strong> {data.timeline.longTerm}
+        </li>
+      </ul>
+    </div>
+  );
+}
+
 const Page = () => {
   const [schoolData, setSchoolData] = useState({});
   const [udiseId, setUdiseId] = useState(null);
@@ -28,6 +108,16 @@ const Page = () => {
       setSchoolData(data);
       console.log(data);
     }
+  };
+
+  const formatText = (text) => {
+    return text
+      .split("\n\n") // Split by double new lines to get sections
+      .map((paragraph, index) => (
+        <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+          {paragraph}
+        </p>
+      ));
   };
 
   const generateReason = async () => {
@@ -58,6 +148,7 @@ const Page = () => {
       console.error("Error in generating suggestions");
     }
     const resData = await response.json();
+
     setSuggestions(resData);
     console.log(suggestions);
   };
@@ -120,9 +211,7 @@ const Page = () => {
         <button onClick={generateSuggestions} className="btn btn-outline">
           Get Suggestions
         </button>
-        <div>
-          {suggestions !== null && <div>{JSON.stringify(suggestions)}</div>}
-        </div>
+        <div>{suggestions ? formatText(suggestions) : ""}</div>
       </div>
     </div>
   );
