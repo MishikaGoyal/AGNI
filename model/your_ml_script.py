@@ -90,20 +90,20 @@ def extract_data_from_pdf(pdf_path):
     return df, parsed_data
 
 def reasons(record):
-    total_teachers = int(record.get("Total Teachers", 0))
-    total_students = int(record.get("Total Students", 0))
-    separate_room_for_hm = int(record.get("Separate Room for HM", 0))
-    grade_configuration_str = record.get("Grade Configuration", "(0,0)")
+    total_teachers = int(record.get("Total_Teachers", 0))
+    total_students = int(record.get("Total_Students", 0))
+    separate_room_for_hm = int(record.get("Separate_Room_for_HM", 0))
+    grade_configuration_str = record.get("Grade_Configuration", "(0,0)")
     grade_configuration = tuple(map(int, grade_configuration_str.strip("()").split(',')))
-    school_type = int(record.get("School Type", 0))
-    total_washrooms_str = record.get("Total Washrooms", "(0,0)")
+    school_type = int(record.get("School_Type", 0))
+    total_washrooms_str = record.get("Total_Washrooms", "(0,0)")
     total_washrooms = tuple(map(int, total_washrooms_str.strip("()").split(',')))
-    boundary_wall = int(record.get("Boundary Wall", 0))
-    library_available = int(record.get("Library Available", 0))
-    drinking_water_available = int(record.get("Drinking Water Available", 0))
-    playground_available = int(record.get("Playground Available", 0))
-    electricity_availability = int(record.get("Electricity Availability", 0))
-    total_classrooms = int(record.get("Total Class Rooms", 0))
+    boundary_wall = int(record.get("Boundary_Wall", 0))
+    library_available = int(record.get("Library_Available", 0))
+    drinking_water_available = int(record.get("Drinking_Water_Available", 0))
+    playground_available = int(record.get("Playground_Available", 0))
+    electricity_availability = int(record.get("Electricity_Availability", 0))
+    total_classrooms = int(record.get("Total_Class_Rooms", 0))
 
     lists=[]
 
