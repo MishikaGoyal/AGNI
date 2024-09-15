@@ -14,7 +14,7 @@ load_dotenv()
 api_key = os.getenv("api_key")
 genai.configure(api_key=api_key)
 
-model = joblib.load('model/school_result_model.pkl')
+model = joblib.load('school_result_model.pkl')
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
 
@@ -69,10 +69,10 @@ def get_reasons():
 def generate_guidance():
     data = request.get_json()
 
+    reason = reasons(data)
+
     if not data or 'Reasons' not in data:
         return jsonify({"error": "No reasons provided"}), 400
-
-    reason = reasons(data)
 
     prompt_header = '''
     You are Sam, an AI assistant helping school principals in India align their schools with the Samagra Shiksha Framework and the New Education Policy (NEP), use data from these policies as well as other policies, and use correct data only.
