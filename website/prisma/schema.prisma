@@ -58,6 +58,7 @@ model schoolUpdates {
   id               String @id @default(auto()) @map("_id") @db.ObjectId
   UDISE_CODE       String @unique  
   State            String
+  School_Name String
   Grade_Configuration String
   Boundary_Wall    Boolean
   Total_Class_Rooms String

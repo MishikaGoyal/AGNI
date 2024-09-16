@@ -8,6 +8,7 @@ import { GrResources } from "react-icons/gr";
 import Image from "next/image";
 
 import Navbar1 from "@/app/Components/Navbar1";
+import Link from "next/link";
 
 const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), {
   ssr: false,
@@ -36,6 +37,13 @@ export default function Page() {
       });
       const responseData = await response.json();
       console.log(responseData);
+      if (responseData.flag === false) {
+        alert("Data already exists");
+      } else if (responseData.flag === true) {
+        alert("Data added succesfully");
+      } else {
+        alert("Error is uploading data");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -81,6 +89,7 @@ export default function Page() {
           imageSrc="/analyse.jpg"
           buttonText="Analyse Now"
           modalId="my_modal_1"
+          link=""
           handleFileChange={handleFileChange}
           handleSubmit={handleSubmit}
         />
@@ -90,13 +99,15 @@ export default function Page() {
           description="See the updates by principal."
           imageSrc="/update.jpg"
           buttonText="See Now"
+          link="/admin/updates"
         />
 
         <Card
-          title="Resource Allocation"
-          description="See the list of schools that makes the request"
+          title="School data"
+          description="See the details of every school"
           imageSrc="/resource.jpg"
           buttonText="See Now"
+          link="/admin/schools"
         />
       </div>
 
@@ -109,6 +120,7 @@ export default function Page() {
           </div>
         ))}
       </div>
+      <div className="h-[10vh]"></div>
     </div>
   );
 }
@@ -121,6 +133,7 @@ const Card = ({
   modalId,
   handleFileChange,
   handleSubmit,
+  link,
 }) => (
   <div className="card bg-base-100 image-full w-[380px] shadow-xl animate-fade-in-up">
     <figure>
@@ -145,6 +158,7 @@ const Card = ({
             >
               {buttonText}
             </button>
+
             <dialog id={modalId} className="modal">
               <div className="modal-box">
                 <h3 className="font-bold text-lg">Submit Report</h3>
@@ -165,9 +179,11 @@ const Card = ({
             </dialog>
           </>
         ) : (
-          <button className="wobble-hor-bottom btn btn-primary">
-            {buttonText}
-          </button>
+          <Link href={link}>
+            <button className="wobble-hor-bottom btn btn-primary">
+              {buttonText}
+            </button>
+          </Link>
         )}
       </div>
     </div>

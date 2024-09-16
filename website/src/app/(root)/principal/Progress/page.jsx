@@ -49,7 +49,7 @@ export default function UpdateSchool() {
 
   const [formData, setFormData] = useState({
     UDISE_CODE: "",
-    State: "",
+    State: "Karnataka",
     Grade_Configuration: "",
     Boundary_Wall: false,
     Total_Class_Rooms: "",
