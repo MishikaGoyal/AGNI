@@ -15,7 +15,7 @@ const UpdateComponent = ({ data }) => {
           >{`${data.Verified === false ? "Pending" : "Verifed"}`}</div>
         </div>
         <div>
-          <Link href="">
+          <Link href={`/admin/${data.UDISE_CODE}`}>
             <button className="py-2 bg-blue-600 text-white rounded-lg px-2">
               Verify Documents
             </button>
@@ -27,4 +27,3 @@ const UpdateComponent = ({ data }) => {
 };
 
 export default UpdateComponent;
-/*{"id":"66e688a40f8213fd3a6f0c70","UDISE_CODE":"29 20 01 23 910","State":"","Grade_Configuration":"(11,12)","Boundary_Wall":true,"Total_Class_Rooms":"65","Library_Available":true,"Separate_Room_for_HM":true,"Drinking_Water_Available":true,"Playground_Available":true,"Electricity_Availability":true,"Total_Teachers":"67","Total_Washrooms":"8","Total_Students":"400","Result":"ODD","Verified":false}] */
