@@ -1,13 +1,14 @@
 "use client";
-import Navbar1 from "@/app/Components/Navbar1";
+import Navbar1 from "@/app/Components/NavbarPrincipal";
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/app/Components/Footer";
 
 export default function Page() {
   return (
     <div className="min-w-max">
       <div>
-        <Navbar1 text={"PRINCIPAL"} />
+  <Navbar1 />
         <div className="flex flex-col md:flex-row items-center justify-evenly mt-12 space-y-4 md:space-y-0 md:space-x-8">
           <h1 className="tracking-in-expand-fwd text-xl font-extrabold text-center md:text-left">
             Get All your School Information <br /> and upgrade your school to
@@ -20,7 +21,7 @@ export default function Page() {
             className="rounded-xl shadow-black"
           />
         </div>
-        <div className="flex flex-col md:flex-row items-start justify-evenly mt-8 mb-4 p-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
+        <div id='know'className="flex flex-col md:flex-row items-start justify-evenly mt-8 mb-4 p-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
           {/* Card - 1 */}
           <div className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-lg">
             <figure className="relative w-full h-full">
@@ -66,7 +67,7 @@ export default function Page() {
           </div>
 
           {/* Card - 2 */}
-          <div className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-xl overflow-hidden">
+          <div id='update' className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-xl overflow-hidden">
             <figure>
               <img
                 src="https://cdn.pixabay.com/photo/2024/02/28/03/55/ai-generated-8601128_1280.png"
@@ -89,7 +90,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-start justify-evenly p-4 mb-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
+        <div  id='resource'className="flex flex-col md:flex-row items-start justify-evenly p-4 mb-4 bg-gray-200 shadow-lg rounded-lg border border-gray-200 w-[90%] mx-auto">
           {/* Card 3 */}
           <div className="card bg-base-100 image-full w-full md:w-[380px] h-[280px] shadow-xl rounded-xl overflow-hidden flex-shrink-0">
             <figure className="relative w-full h-full">
@@ -145,7 +146,7 @@ export default function Page() {
           </div>
 
           {/* Card-4 */}
-          <div className="card bg-base-100 image-full w-full md:w-[380px] h-[280px] shadow-xl rounded-xl overflow-hidden">
+          <div id='guide'className="card bg-base-100 image-full w-full md:w-[380px] h-[280px] shadow-xl rounded-xl overflow-hidden">
             <figure className="w-full h-2/3">
               <img
                 src="https://cdn.pixabay.com/photo/2016/03/17/23/07/abstract-1264071_1280.png"
@@ -168,6 +169,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <Footer className='mt-[10px]'/>
     </div>
   );
 }
