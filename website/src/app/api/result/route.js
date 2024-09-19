@@ -23,13 +23,16 @@ export async function POST(req) {
     });
 
     if (isThere) {
-      return NextResponse.json({ message: "School data already uploaded" });
+      return NextResponse.json({
+        message: "School data already uploaded",
+        flag: false,
+      });
     }
 
     await prisma.school.create({
       data: {
         UDISE_CODE: schoolData["UDISE CODE"] || "",
-        School_Name: schoolData["School name"] || "",
+        School_Name: schoolData["School Name"] || "",
         State: schoolData["State"] || "",
         School_Category: schoolData["School Category"] || "",
         School_Management: schoolData["School Management"] || "",
@@ -56,11 +59,14 @@ export async function POST(req) {
     });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "unexpected error occured" });
+    return NextResponse.json({
+      message: "unexpected error occured",
+      flag: null,
+    });
   }
 
   return NextResponse.json(
-    { message: "Data added succesfully" },
+    { message: "Data added succesfully", flag: true },
     { status: 200 }
   );
 }
