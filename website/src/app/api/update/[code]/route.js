@@ -1,13 +1,25 @@
-export async function GET({ params }) {
-  const code = params.code;
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
-  const response = await fetch("/api/update", {
-    headers: {
-      "Content-Type": "application/json",
+const prisma = new PrismaClient();
+
+export async function GET(request, { params }) {
+  const { code } = params;
+  function removeWhitespaces(str) {
+    return str.replace(/\s+/g, "");
+  }
+  const formattedCode = removeWhitespaces(code);
+  console.log(formattedCode);
+
+  const pendingUpdates = await prisma.schoolUpdates.findMany({
+    where: {
+      Verified: false,
     },
-    method: "GET",
-    cache: "no-store",
   });
 
-  const data = await response.json();
+  const filteredData = pendingUpdates.filter(
+    (item) => removeWhitespaces(item.UDISE_CODE) === removeWhitespaces(code)
+  );
+  console.log(filteredData);
+  return NextResponse.json(filteredData);
 }

@@ -1,5 +1,13 @@
 "use client";
-import Navbar1 from "@/app/Components/Navbar1";
+
+import { useState, useMemo } from "react";
+import dynamic from "next/dynamic";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { PiStudent } from "react-icons/pi";
+import { GrResources } from "react-icons/gr";
+import Image from "next/image";
+
+import Navbar from "@/app/Components/NavbarAdmin";
 import Link from "next/link";
 
 const SearchBar = dynamic(() => import("@/app/Components/Searchbar"), {
@@ -54,24 +62,23 @@ export default function Page() {
 
   return (
     <div className="min-w-max">
+      {/* Background Image */}
       <div>
-        <Navbar1 text={"ADMIN"} />
-        <div className="flex flex-col md:flex-row items-center justify-evenly mt-12 space-y-4 md:space-y-0 md:space-x-8">
-          <h1 className="tracking-in-expand-fwd text-xl font-extrabold text-center md:text-left">
-            Manage School Resources & Requests Efficiently
-          </h1>
-          <Image
-            src="/img11.jpg"
-            width={400}
-            height={200}
-            className="rounded-xl shadow-black"
-          />
-        </div>
+        <Image
+          src="/img5.jpg"
+          alt="Background"
+          width={600}
+          height={100}
+          className="rounded-xl absolute ml-[800px] mt-[150px]"
+          priority
+        />
+      </div>
 
-      <Navbar1 text={"ADMIN"}/>
+      <Navbar text={"ADMIN"} />
 
       <p className="tracking-in-expand-fwd mt-[20px] ml-[40px] text-xl">
-        The beautiful thing about learning is that no one can take it away from you.
+        The beautiful thing about learning is that no one can take it away from
+        you.
       </p>
 
       <div className="flex flex-wrap justify-between mt-[500px] px-10 gap-8 relative">
@@ -82,6 +89,7 @@ export default function Page() {
           imageSrc="/analyse.jpg"
           buttonText="Analyse Now"
           modalId="my_modal_1"
+          link=""
           handleFileChange={handleFileChange}
           handleSubmit={handleSubmit}
         />
@@ -91,44 +99,52 @@ export default function Page() {
           description="See the updates by principal."
           imageSrc="/update.jpg"
           buttonText="See Now"
+          link="/admin/updates"
         />
 
         <Card
-          title="Resource Allocation"
-          description="See the list of schools that makes the request"
+          title="School data"
+          description="See the details of every school"
           imageSrc="/resource.jpg"
           buttonText="See Now"
+          link="/admin/schools"
         />
       </div>
 
-          <div className="card bg-base-100 image-full w-full md:w-[400px] h-[280px] shadow-xl rounded-xl overflow-hidden">
-            <figure>
-              <img
-                src="/img10.jpg"
-                alt="View Requests"
-                className="w-full h-full object-cover"
-              />
-            </figure>
-            <div className="card-body flex flex-col justify-between h-1/3 p-4">
-              <h2 className="card-title text-xl font-semibold">Check Requests</h2>
-              <p className="mt-2 text-sm">Manage all requests made by the schools and take action as needed.</p>
-              <div className="card-actions mt-auto flex justify-end">
-                <Link href="/admin/requests">
-                  <button className="btn btn-primary">View Now</button>
-                </Link>
-              </div>
-            </div>
+      <div className="stats shadow mt-[100px] w-full">
+        {statistics.map((stat, index) => (
+          <div key={index} className="stat tracking-in-expand-fwd">
+            <div className="stat-figure text-xl">{stat.icon}</div>
+            <div className="stat-title">{stat.title}</div>
+            <div className="stat-value">{stat.value}</div>
           </div>
-        </div>
+        ))}
       </div>
-
+      <div className="h-[10vh]"></div>
+    </div>
   );
 }
 
-const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileChange, handleSubmit }) => (
+const Card = ({
+  title,
+  description,
+  imageSrc,
+  buttonText,
+  modalId,
+  handleFileChange,
+  handleSubmit,
+  link,
+}) => (
   <div className="card bg-base-100 image-full w-[380px] shadow-xl animate-fade-in-up">
     <figure>
-      <Image src={imageSrc} alt={title} width={380} height={250} className="rounded-xl" loading="lazy" />
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={380}
+        height={250}
+        className="rounded-xl"
+        loading="lazy"
+      />
     </figure>
     <div className="card-body">
       <h2 className="card-title">{title}</h2>
@@ -142,6 +158,7 @@ const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileCha
             >
               {buttonText}
             </button>
+
             <dialog id={modalId} className="modal">
               <div className="modal-box">
                 <h3 className="font-bold text-lg">Submit Report</h3>
@@ -162,7 +179,11 @@ const Card = ({ title, description, imageSrc, buttonText, modalId, handleFileCha
             </dialog>
           </>
         ) : (
-          <button className="wobble-hor-bottom btn btn-primary">{buttonText}</button>
+          <Link href={link}>
+            <button className="wobble-hor-bottom btn btn-primary">
+              {buttonText}
+            </button>
+          </Link>
         )}
       </div>
     </div>

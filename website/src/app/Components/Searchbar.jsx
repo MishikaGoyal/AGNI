@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
@@ -7,11 +7,10 @@ const SearchBar = ({ onSearch }) => {
   const [udiseCode, setUdiseCode] = useState("");
 
   const handleSearch = () => {
-   
-    const schoolData = getSchoolByUdise(udiseCode); 
+    const schoolData = getSchoolByUdise(udiseCode);
 
     if (schoolData) {
-      onSearch(schoolData); 
+      onSearch(schoolData);
     } else {
       alert("School not found!");
     }
@@ -36,11 +35,20 @@ const SearchBar = ({ onSearch }) => {
   );
 };
 
-
 function getSchoolByUdise(udiseCode) {
   const schools = [
-    { udiseCode: "123456", name: "Green Valley School", structure: "Standard", resources: "Adequate" },
-    { udiseCode: "654321", name: "Blue Ridge School", structure: "Odd", resources: "Limited" },
+    {
+      udiseCode: "123456",
+      name: "Green Valley School",
+      structure: "Standard",
+      resources: "Adequate",
+    },
+    {
+      udiseCode: "654321",
+      name: "Blue Ridge School",
+      structure: "Odd",
+      resources: "Limited",
+    },
   ];
 
   return schools.find((school) => school.udiseCode === udiseCode);

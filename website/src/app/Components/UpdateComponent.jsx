@@ -15,7 +15,7 @@ const UpdateComponent = ({ data }) => {
           >{`${data.Verified === false ? "Pending" : "Verifed"}`}</div>
         </div>
         <div>
-          <Link href={`/admin/${data.UDISE_CODE}`}>
+          <Link href={`/admin/updates/${data.UDISE_CODE}`}>
             <button className="py-2 bg-blue-600 text-white rounded-lg px-2">
               Verify Documents
             </button>
