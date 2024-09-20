@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/app/Components/NavbarPrincipal";
 import { useState, useEffect } from "react";
 
 export default function UpdateSchool() {
@@ -78,7 +79,11 @@ export default function UpdateSchool() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <>
+      <Navbar />
+   
+    <div className="max-w-3xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg mt-[20px]">
+    
       <h1 className="text-2xl font-bold mb-4">Update School Information</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <fieldset className="border-t border-gray-200 pt-4">
@@ -245,5 +250,6 @@ export default function UpdateSchool() {
         </button>
       </form>
     </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/app/Components/NavbarPrincipal";
 import { NextResponse } from "next/server";
 import React, { useEffect, useState } from "react";
 
@@ -154,7 +155,10 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-4">
+    <>
+    <Navbar />
+    <div className="flex flex-col items-center mt-[10px]">
+
       <h1 className="text-2xl font-bold mb-4">Status of your school</h1>
 
       {/* Conditionally render the table only after data is fetched */}
@@ -214,6 +218,7 @@ const Page = () => {
         <div>{suggestions ? formatText(suggestions) : ""}</div>
       </div>
     </div>
+    </>
   );
 };
 

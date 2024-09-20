@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar1 from '@/app/Components/Navbar1';
+import Navbar1 from '@/app/Components/NavbarPrincipal';
 
 function Page() {
   const [inputData, setInputData] = useState(null); // For storing fetched school data

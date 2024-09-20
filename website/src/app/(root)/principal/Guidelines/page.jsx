@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import Navbar from '@/app/Components/NavbarPrincipal';
+import Footer from '@/app/Components/Footer';
 
 // Static Data
 const data = {
@@ -44,12 +46,12 @@ const data = {
 const TransitionPlatform = () => {
   return (
     <div>
-      <main className="bg-black">
-        {/* Header */}
-        <header className="bg-blue-300 py-8 shadow-md">
+      <main >
+        <Navbar />
+        <header className="bg-slate-100 py-8 shadow-md mt-[10px]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl font-bold text-white">School Transition Platform</h1>
-            <p className="text-xl text-white mt-2">
+            <h1 className="text-4xl font-bold text-black">School Transition Platform</h1>
+            <p className="text-xl text-black mt-2">
               Guidelines, best practices, and resources for schools transitioning from odd to standard structures.
             </p>
           </div>
@@ -71,30 +73,26 @@ const TransitionPlatform = () => {
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-blue-300 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          © 2024 School Transition Platform. All rights reserved.
-        </div>
-      </footer>
-    </div>
+  
+      <Footer />
+      </div>
   );
 };
 
 const Section = ({ title, items }) => (
-  <section className="bg-blue-200 py-12">
+  <section className="bg-slate-100 py-12">
     <div className="max-w-6xl mx-auto px-6">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">{title}</h2>
       <ul className="space-y-6">
         {items.map((item, index) => (
           <li key={index} className="bg-white p-6 shadow-md rounded-md">
-            <h3 className="text-2xl font-semibold text-blue-400">{item.title}</h3>
+            <h3 className="text-2xl font-semibold text-gray-800">{item.title}</h3>
             <p className="text-gray-700 mt-2">{item.description}</p>
             <a
               href={item.pdfLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 bg-blue-200 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
+              className="inline-block mt-4 bg-gray-100 text-black hover:text-white px-4 py-2 rounded hover:bg-black transition"
             >
               Download PDF
             </a>

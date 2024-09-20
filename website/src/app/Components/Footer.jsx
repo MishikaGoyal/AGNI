@@ -6,8 +6,8 @@ export default function Footer() {
         <div className="flex justify-between flex-wrap items-start">
           {/* Logo Section */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold">LOGO</h1>
-            <p className="mt-2">COMPANY</p>
+          
+            <p className="mt-2">EduSync</p>
           </div>
 
           {/* Services & About Us Section */}
@@ -33,13 +33,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <hr className="border-gray-500 my-6" />
 
-        {/* Footer Bottom Section */}
+       
         <div className="flex justify-between items-center">
-          {/* Social Icons */}
-          <div className="space-x-4">
+      
+          <div className="space-x-4 ml-[40px] -mt-[100px]">
             <a href="#" className="hover:text-white"><i className="fab fa-facebook-f"></i></a>
             <a href="#" className="hover:text-white"><i className="fab fa-twitter"></i></a>
             <a href="#" className="hover:text-white"><i className="fab fa-rss"></i></a>
