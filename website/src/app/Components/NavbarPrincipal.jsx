@@ -4,6 +4,7 @@ import { FaHome } from "react-icons/fa";
 
 function Navbar() {
   return (
+<<<<<<< HEAD
     <navbar className="">
       <div className="bg-gray-800  font-semibold text-lg text-white h-[70px]  ">
         <ul className="flex space-x-6 px-3 h-full first-letter:h-full justify-between ">
@@ -53,6 +54,51 @@ function Navbar() {
       </div>
     </navbar>
   );
+=======
+    <navbar className=" text-white shadow-lg">
+    <div className="flex items-center bg-gray-800 justify-between h-[60px] px-4">
+      
+      {/* Home Icon */}
+      <ul className="flex items-center">
+        <Link href="/principal">
+          <li className="hover:text-blue-400">
+            <FaHome className="text-2xl" />
+          </li>
+        </Link>
+      </ul>
+  
+      {/* Center Links */}
+      <ul className="flex space-x-8">
+        <Link href="/principal/structure">
+          <li className="hover:text-blue-400">Know Structure</li>
+        </Link>
+        <Link href="/principal/Progress">
+          <li className="hover:text-blue-400">Make Updates</li>
+        </Link>
+        <Link href="/principal/algorithm">
+          <li className="hover:text-blue-400">Check Resources</li>
+        </Link>
+        <Link href="/principal/Guidelines">
+          <li className="hover:text-blue-400">Guidelines</li>
+        </Link>
+      </ul>
+  
+      {/* Signout Button */}
+      <ul className="flex items-center">
+        <Link href="/">
+          <li>
+            <button className="bg-white text-gray-800 hover:bg-gray-700 hover:text-white p-2 rounded-md transition duration-300">
+              Sign out
+            </button>
+          </li>
+        </Link>
+      </ul>
+  
+    </div>
+  </navbar>
+  
+  )
+>>>>>>> 785748c5 (organised output of algo)
 }
 
 export default Navbar;
