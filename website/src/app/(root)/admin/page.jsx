@@ -1,10 +1,47 @@
 "use client";
+import { useState } from "react";
 import Navbar1 from "@/app/Components/NavbarAdmin";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/Components/Footer";
 
 export default function AdminPage() {
+  const [selectedSchool, setSelectedSchool] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => setFile(event.target.files[0]);
+
+  const handleSubmit = async () => {
+    if (!file) {
+      alert("You need to upload a file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/result", {
+        cache: "no-store",
+        method: "POST",
+        body: formData,
+      });
+      const responseData = await response.json();
+      setIsModalOpen(false);
+      console.log(responseData);
+      if (responseData.flag === false) {
+        alert("Data already exists");
+      } else if (responseData.flag === true) {
+        alert("Data added succesfully");
+      } else {
+        alert("Error is uploading data");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="min-w-max">
       <div>
@@ -38,9 +75,12 @@ export default function AdminPage() {
               <h2 className="card-title text-xl font-semibold">
                 Check School Structure
               </h2>
-              <Link href="/admin/school-structure">
-                <button className="btn btn-primary mt-4">Check Now</button>
-              </Link>
+              <button
+                className="btn btn-primary mt-4 w-[150px]"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Check Now
+              </button>
             </div>
           </div>
 
@@ -53,6 +93,28 @@ export default function AdminPage() {
             </p>
           </div>
         </div>
+
+        {/* File Upload Modal */}
+        {isModalOpen && (
+          <dialog className="modal" open>
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Submit Report</h3>
+              <input
+                type="file"
+                className="file-input file-input-bordered w-full max-w-xs mt-[20px]"
+                onChange={handleFileChange}
+              />
+              <div className="modal-action">
+                <button className="btn" onClick={handleSubmit}>
+                  Submit
+                </button>
+                <button className="btn" onClick={() => setIsModalOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </dialog>
+        )}
 
         {/* Review Updates Section */}
         <div

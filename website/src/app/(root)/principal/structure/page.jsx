@@ -79,32 +79,32 @@ const Page = () => {
       <Navbar />
       <section className="px-[10%]">
         <div className=" bg-white py-5 px-3">
-          <div className="flex justify-between py-4 mb-4 bg-slate-100 px-3 rounded-lg shadow-md">
+          <div className="flex justify-between py-4 mb-4 bg-blue-500 text-white px-3 rounded-lg shadow-md">
             <h2 className="text-3xl font-bold">
               Your school is {schoolData.Result}{" "}
             </h2>
             <h2 className="text-3xl font-bold">{schoolData.UDISE_CODE}</h2>
           </div>
-          <div className="grid grid-cols-6 grid-rows-2 gap-7 [&>*]:rounded-lg [&>*]:bg-slate-100  h-[70vh] [&>*]:h-[22vh] [&>*]:border-black [&>*]:shadow-md ">
-            <div className="col-span-2 flex flex-col items-center justify-center">
+          <div className="grid grid-cols-6  text-white grid-rows-2 gap-7 [&>*]:rounded-lg  h-[70vh] [&>*]:h-[22vh] [&>*]:border-black [&>*]:shadow-md ">
+            <div className="col-span-2 flex text-white bg-blue-500 flex-col items-center justify-center">
               <div className="text-[5rem]">{schoolData.Total_Teachers}</div>
               <div className="font-semibold text-2xl">Teachers</div>
             </div>
-            <div className="col-span-2 flex flex-col items-center justify-center">
+            <div className="col-span-2 flex bg-blue-800  text-white flex-col items-center justify-center">
               <div className="text-[5rem]">{schoolData.Total_Students}</div>
               <div className="font-semibold text-2xl">Students</div>
             </div>
-            <div className="col-span-2 flex flex-col items-center justify-center">
+            <div className="col-span-2 flex bg-blue-500  text-white flex-col items-center justify-center">
               <div className="text-[5rem]">{schoolData.Total_Class_Rooms}</div>
               <div className="font-semibold text-2xl">Class Rooms</div>
             </div>
-            <div className="col-span-2 flex flex-col items-center justify-center">
+            <div className="col-span-2 flex flex-col bg-blue-800 items-center justify-center">
               <div className="text-[5rem]">
                 {schoolData.Grade_Configuration}
               </div>
               <div className="font-semibold text-2xl">Grades</div>
             </div>
-            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+            <div className="col-span-2 font-semibold bg-blue-500  text-white flex flex-col items-center justify-center">
               <div className="text-[2.5rem] flex items-center justify-center flex-col">
                 <div>Library</div>
                 {`${
@@ -114,7 +114,7 @@ const Page = () => {
                 }`}
               </div>
             </div>
-            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+            <div className="col-span-2 font-semibold flex bg-blue-800 flex-col items-center justify-center">
               <div className="text-[2.2rem] flex items-center justify-center flex-col">
                 <div>Drinking water</div>
                 {`${
@@ -124,7 +124,7 @@ const Page = () => {
                 }`}
               </div>
             </div>
-            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+            <div className="col-span-2 font-semibold bg-blue-500  text-white flex flex-col items-center justify-center">
               <div className="text-[2.2rem] flex items-center justify-center flex-col">
                 <div>Playground</div>
                 {`${
@@ -134,7 +134,7 @@ const Page = () => {
                 }`}
               </div>
             </div>
-            <div className="col-span-2 flex font-semibold flex-col items-center justify-center">
+            <div className="col-span-2 flex font-semibold bg-blue-800 flex-col items-center justify-center">
               <div className="text-[2.2rem] flex items-center justify-center flex-col">
                 <div>Electricity</div>
                 {`${
@@ -144,7 +144,7 @@ const Page = () => {
                 }`}
               </div>
             </div>
-            <div className="col-span-2  font-semibold flex flex-col items-center justify-center">
+            <div className="col-span-2  font-semibold bg-blue-500  text-white flex flex-col items-center justify-center">
               <div className="text-[2.2rem] flex items-center justify-center flex-col">
                 <div>Boundary</div>
                 {`${
@@ -154,18 +154,34 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 mb-8 w-full  flex items-center justify-center">
-          <button onClick={generateReason} className="btn btn-outline">
+        <div className="mt-8 mb-8 w-full py-2 px-2 text-white flex items-center justify-center">
+          <button
+            onClick={generateReason}
+            className="btn btn-outline  bg-blue-500 text-white"
+          >
             Find Out Why
           </button>
         </div>
-        <div>{reason !== null && <div>{reason[0]}</div>}</div>
+        <div>
+          {reason !== null && (
+            <div className="bg-slate-200 px-3 py-3 rounded-md flex items-center justify-center text-xl flex-col">
+              {reason.map((item) => {
+                return <div>{item}</div>;
+              })}
+            </div>
+          )}
+        </div>
         <div className="mt-8 mb-8 w-full  flex items-center justify-center">
-          <button onClick={generateSuggestions} className="btn btn-outline">
+          <button
+            onClick={generateSuggestions}
+            className="btn btn-outline bg-blue-500 text-white"
+          >
             Get Suggestions
           </button>
         </div>
-        <div>{suggestions ? formatText(suggestions) : ""}</div>
+        <div className="text-lg bg-slate-100 px-5 py-3 rounded-lg font-semibold">
+          {suggestions ? formatText(suggestions) : ""}
+        </div>
       </section>
     </>
   );
