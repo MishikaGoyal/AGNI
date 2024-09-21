@@ -5,7 +5,7 @@ import { FaHome } from "react-icons/fa";
 function Navbar() {
   return (
     <navbar className="">
-      <div className="bg-blue-500  font-semibold text-lg text-white h-[70px]  ">
+      <div className="bg-gray-800  font-semibold text-lg text-white h-[70px]  ">
         <ul className="flex space-x-6 px-3 h-full first-letter:h-full justify-between ">
           <div className="w-[20%] mt-3 ">
             <Link href="/principal">
@@ -15,7 +15,7 @@ function Navbar() {
               </li>
             </Link>
           </div>
-          <div className="flex w-[60%] border-2 border-blue-500 px-3  justify-between">
+          <div className="flex w-[60%]  px-3  justify-between">
             <Link href="/principal/structure">
               {" "}
               <li className="mt-[10px] hover:bg-blue-700 py-2 px-2 rounded-md ">

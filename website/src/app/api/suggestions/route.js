@@ -8,7 +8,7 @@ export async function POST(req) {
   const response = await fetch("http://127.0.0.1:5000/suggestions", {
     headers: { "Content-type": "application/json" },
     method: "POST",
-    body: JSON.stringify(data.data),
+    body: JSON.stringify(data),
     cache: "no-store",
   });
 

@@ -26,7 +26,7 @@ const Page = () => {
       console.error("Error in fetching school data");
     } else {
       const data = await response.json();
-      setSchoolData(data);
+      setSchoolData(data.data);
       console.log(data);
     }
   };
@@ -78,66 +78,94 @@ const Page = () => {
     <>
       <Navbar />
       <section className="px-[10%]">
-        <div className="flex flex-col items-center mt-[10px]">
-          <h1 className="text-2xl font-bold mb-4">Status of your school</h1>
-
-          {/* Conditionally render the table only after data is fetched */}
-          {schoolData && schoolData.data ? (
-            <table className="table w-full max-w-md">
-              <thead>
-                <tr>
-                  <th className="text-left">Field</th>
-                  <th className="text-left">Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="font-semibold">UDISE Code</td>
-                  <td>{schoolData.data.UDISE_CODE}</td>
-                </tr>
-                <tr>
-                  <td className="font-semibold">Result</td>
-                  <td>{schoolData.data.Result}</td>
-                </tr>
-                {/* <tr>
-              <td className="font-semibold">School Name</td>
-              <td>{schoolData.data.School_Name || "N/A"}</td>
-            </tr> */}
-                <tr>
-                  <td className="font-semibold">State</td>
-                  <td>{schoolData.data.State}</td>
-                </tr>
-                <tr>
-                  <td className="font-semibold">Total Class Rooms</td>
-                  <td>{schoolData.data.Total_Class_Rooms}</td>
-                </tr>
-                <tr>
-                  <td className="font-semibold">Total Teachers</td>
-                  <td>{schoolData.data.Total_Teachers}</td>
-                </tr>
-                <tr>
-                  <td className="font-semibold">Total Students</td>
-                  <td>{schoolData.data.Total_Students}</td>
-                </tr>
-              </tbody>
-            </table>
-          ) : (
-            <p>Loading school data...</p>
-          )}
-
-          <div className="mt-8 mb-8 border-2 w-full  flex items-center justify-center">
-            <button onClick={generateReason} className="btn btn-outline">
-              Find Out Why
-            </button>
+        <div className=" bg-white py-5 px-3">
+          <div className="flex justify-between py-4 mb-4 bg-slate-100 px-3 rounded-lg shadow-md">
+            <h2 className="text-3xl font-bold">
+              Your school is {schoolData.Result}{" "}
+            </h2>
+            <h2 className="text-3xl font-bold">{schoolData.UDISE_CODE}</h2>
           </div>
-          <div>{reason !== null && <div>{JSON.stringify(reason)}</div>}</div>
-          <div className="mt-8 mb-8">
-            <button onClick={generateSuggestions} className="btn btn-outline">
-              Get Suggestions
-            </button>
+          <div className="grid grid-cols-6 grid-rows-2 gap-7 [&>*]:rounded-lg [&>*]:bg-slate-100  h-[70vh] [&>*]:h-[22vh] [&>*]:border-black [&>*]:shadow-md ">
+            <div className="col-span-2 flex flex-col items-center justify-center">
+              <div className="text-[5rem]">{schoolData.Total_Teachers}</div>
+              <div className="font-semibold text-2xl">Teachers</div>
+            </div>
+            <div className="col-span-2 flex flex-col items-center justify-center">
+              <div className="text-[5rem]">{schoolData.Total_Students}</div>
+              <div className="font-semibold text-2xl">Students</div>
+            </div>
+            <div className="col-span-2 flex flex-col items-center justify-center">
+              <div className="text-[5rem]">{schoolData.Total_Class_Rooms}</div>
+              <div className="font-semibold text-2xl">Class Rooms</div>
+            </div>
+            <div className="col-span-2 flex flex-col items-center justify-center">
+              <div className="text-[5rem]">
+                {schoolData.Grade_Configuration}
+              </div>
+              <div className="font-semibold text-2xl">Grades</div>
+            </div>
+            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+              <div className="text-[2.5rem] flex items-center justify-center flex-col">
+                <div>Library</div>
+                {`${
+                  schoolData.Library_Available === "1"
+                    ? "Available"
+                    : "Not Available"
+                }`}
+              </div>
+            </div>
+            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+              <div className="text-[2.2rem] flex items-center justify-center flex-col">
+                <div>Drinking water</div>
+                {`${
+                  schoolData.Drinking_Water_Available === "1"
+                    ? "Available"
+                    : "Not Available"
+                }`}
+              </div>
+            </div>
+            <div className="col-span-2 font-semibold flex flex-col items-center justify-center">
+              <div className="text-[2.2rem] flex items-center justify-center flex-col">
+                <div>Playground</div>
+                {`${
+                  schoolData.Playground_Available === "1"
+                    ? "Available"
+                    : "Not Available"
+                }`}
+              </div>
+            </div>
+            <div className="col-span-2 flex font-semibold flex-col items-center justify-center">
+              <div className="text-[2.2rem] flex items-center justify-center flex-col">
+                <div>Electricity</div>
+                {`${
+                  schoolData.Electricity_Availability === "1"
+                    ? "Available"
+                    : "Not Available"
+                }`}
+              </div>
+            </div>
+            <div className="col-span-2  font-semibold flex flex-col items-center justify-center">
+              <div className="text-[2.2rem] flex items-center justify-center flex-col">
+                <div>Boundary</div>
+                {`${
+                  schoolData.Boundary_Wall === "1" ? "Present" : "Not Present"
+                }`}
+              </div>
+            </div>
           </div>
-          <div>{suggestions ? formatText(suggestions) : ""}</div>
         </div>
+        <div className="mt-8 mb-8 w-full  flex items-center justify-center">
+          <button onClick={generateReason} className="btn btn-outline">
+            Find Out Why
+          </button>
+        </div>
+        <div>{reason !== null && <div>{reason[0]}</div>}</div>
+        <div className="mt-8 mb-8 w-full  flex items-center justify-center">
+          <button onClick={generateSuggestions} className="btn btn-outline">
+            Get Suggestions
+          </button>
+        </div>
+        <div>{suggestions ? formatText(suggestions) : ""}</div>
       </section>
     </>
   );
