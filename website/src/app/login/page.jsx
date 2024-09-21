@@ -28,10 +28,16 @@ export default function Page() {
         sessionStorage.setItem("userId", resData.loginId);
         sessionStorage.setItem("udiseId", resData.udiseId);
         router.push(`/${resData.role.toLowerCase()}`);
+      } else {
+        setLoading(false);
+        if (resData.message === "Invalid user") {
+          alert("username invalid");
+        } else if (resData.message === "Incorrect password") {
+          alert("password is incorrect");
+        }
       }
       console.log(resData.message);
     } catch (error) {
-      setLoading(false);
       console.error("an unexpected error occured", error);
     }
   }
