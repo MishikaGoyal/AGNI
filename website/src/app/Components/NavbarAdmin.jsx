@@ -32,11 +32,7 @@ function Navbar() {
               Allocate Resources
             </li>
           </Link>
-          <Link href="/principal/Guidelines">
-            <li className="mt-[10px]  hover:bg-blue-700 py-2 px-2 rounded-md">
-              Check Requests
-            </li>
-          </Link>
+         
         </ul>
         <ul className="justify-end py-2 w-[20%] mt-2 flex pr-5">
           <Link href="/">

@@ -1,5 +1,4 @@
 "use client";
-import { CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";

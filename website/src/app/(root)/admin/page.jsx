@@ -4,6 +4,7 @@ import Navbar1 from "@/app/Components/NavbarAdmin";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/Components/Footer";
+import Chatbot from "@/app/Components/Chatbot";
 
 export default function AdminPage() {
   const [selectedSchool, setSelectedSchool] = useState(null);
@@ -105,9 +106,9 @@ export default function AdminPage() {
                 onChange={handleFileChange}
               />
               <div className="modal-action">
-                <button className="btn" onClick={handleSubmit}>
+               <Link href='/admin/schools'> <button className="btn" onClick={handleSubmit}>
                   Submit
-                </button>
+                </button></Link>
                 <button className="btn" onClick={() => setIsModalOpen(false)}>
                   Close
                 </button>
@@ -199,10 +200,8 @@ export default function AdminPage() {
         >
           <div className="w-full md:w-[600px] flex items-center">
             <p className="text-md leading-relaxed">
-              The "View Requests" feature enables admins to monitor requests
-              from schools, ranging from infrastructure upgrades to essential
-              supplies. Keeping track of these requests ensures timely action
-              and proper resource distribution.
+              The "Show School Data" feature enables admins to monitor all the schools 
+              added in the database previously.
             </p>
           </div>
 
@@ -216,14 +215,13 @@ export default function AdminPage() {
             </figure>
             <div className="card-body flex flex-col justify-between h-1/3 p-4">
               <h2 className="card-title text-xl font-semibold">
-                Check Requests
+              All School Data
               </h2>
               <p className="mt-2 text-sm">
-                Manage all requests made by the schools and take action as
-                needed.
+               See The Data of All Schools in the Database
               </p>
               <div className="card-actions mt-auto flex justify-end">
-                <Link href="/admin/requests">
+                <Link href="/admin/schools">
                   <button className="btn btn-primary">View Now</button>
                 </Link>
               </div>
@@ -231,6 +229,7 @@ export default function AdminPage() {
           </div>
         </div>
       </div>
+      <Chatbot />
       <Footer className="mt-[10px]" />
     </div>
   );
