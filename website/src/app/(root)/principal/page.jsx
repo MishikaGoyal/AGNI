@@ -3,6 +3,7 @@ import Navbar from "@/app/Components/NavbarPrincipal";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/Components/Footer";
+import Chatbot from "@/app/Components/Chatbot";
 
 export default function Page() {
   return (
@@ -181,6 +182,7 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <Chatbot />
       <Footer className="mt-[10px]" />
     </div>
   );
