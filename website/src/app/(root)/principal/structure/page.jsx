@@ -71,6 +71,7 @@ const Page = () => {
     const resData = await response.json();
 
     setSuggestions(resData);
+
     console.log(suggestions);
   };
 
